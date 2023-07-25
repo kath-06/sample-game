@@ -1,6 +1,6 @@
 <template>
     <el-header>
-        <el-menu mode="horizontal" active-text-color="#740001" default-active="/games/tictactoe">
+        <el-menu mode="horizontal" active-text-color="#740001" default-active="/">
             <el-menu-item class="header-name">
                 <slot name="headerName">
                     Header Name
