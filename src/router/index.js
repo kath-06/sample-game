@@ -9,7 +9,7 @@ const routes = [
         component: Default,
         children: [
             {
-                path: '/games/tictactoe',
+                path: '/',
                 name: 'Games',
                 component: TicTacToe
             },

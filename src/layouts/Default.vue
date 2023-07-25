@@ -22,10 +22,10 @@ const navMenu = [
   {
     type: 'sub',
     text: 'Games',
-    link: '/games/tictactoe',
+    link: '/',
     icon: 'MagicStick',
     subMenu: [
-      { text: 'TicTacToe', link: '/games/tictactoe' }
+      { text: 'TicTacToe', link: '/' }
     ]
   }
 ]
