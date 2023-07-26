@@ -1,12 +1,10 @@
 <template>
-    <el-row class="mt-6 game-result">
-        <el-col :span="12">
-            <span>
+    <el-row class="m-8 text-2xl">
+        <el-col :span="24">
+            <span v-show="nextPlayer">
                 Next Player: {{nextPlayer}}
             </span>
-        </el-col>
-        <el-col :span="12">
-            <span>
+            <span v-show="gameResult">
                 Game Result: {{gameResult}}
             </span>
         </el-col>
@@ -18,17 +16,11 @@ import { defineProps } from 'vue'
 defineProps({
     nextPlayer: {
         type: String,
-        default: '-'
+        default: ''
     },
     gameResult: {
         type: String,
-        default: '-'
+        default: ''
     }
 })
 </script>
-<style scoped>
-.game-result {
-    margin-top: 50px;
-    font-size: 25px;
-}
-</style>

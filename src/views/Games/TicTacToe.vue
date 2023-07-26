@@ -1,31 +1,39 @@
 <template>
-    <div w="full">
-        <h2>TICTACTOE</h2>
-        <square-boxes :squares="squares" @next-square-value="nextSquareValue" />
-        <game-result :nextPlayer="nextPlayer" :game-result="result" />
-        <el-button type="danger" @click="restartGame">Restart</el-button>
+    <div class="w-full h-full flex flex-col justify-center content-center">
+        <div class="h-24 font-serif">
+            <span class="text-4xl md:text-6xl tracking-wide">TicTacToe</span>
+        </div>
+        <div class="flex justify-center content-center">
+            <square-boxes :squares="squares" @next-square-value="nextSquareValue" />
+        </div>
+        <div>
+            <game-result :nextPlayer="nextPlayer" :game-result="result" />
+            <el-button v-show="result" type="danger" round @click="restartGame">Restart</el-button>
+        </div>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 
 let currentValue = ref<any>(0);
 let xIsNext = ref<boolean>(false);
 let winner = ref<string>('');
+let winnerKeys = ref<any>([]);
 let result = ref<string>('');
 let nextPlayer = ref<string>('X');
 let isEmpty = ref<boolean>(true);
+let squareClass = ref<string>('border-2 h-20 text-4xl flex justify-center items-center font-bold border-white');
 let squares = ref([
-    { keyIndex: 0, text: '' },
-    { keyIndex: 1, text: '' },
-    { keyIndex: 2, text: '' },
-    { keyIndex: 3, text: '' },
-    { keyIndex: 4, text: '' },
-    { keyIndex: 5, text: '' },
-    { keyIndex: 6, text: '' },
-    { keyIndex: 7, text: '' },
-    { keyIndex: 8, text: '' }
+    { keyIndex: 0, text: '', class: squareClass.value },
+    { keyIndex: 1, text: '', class: squareClass.value },
+    { keyIndex: 2, text: '', class: squareClass.value },
+    { keyIndex: 3, text: '', class: squareClass.value },
+    { keyIndex: 4, text: '', class: squareClass.value },
+    { keyIndex: 5, text: '', class: squareClass.value },
+    { keyIndex: 6, text: '', class: squareClass.value },
+    { keyIndex: 7, text: '', class: squareClass.value },
+    { keyIndex: 8, text: '', class: squareClass.value }
 ]);
 
 const restartGame = () => {
@@ -37,6 +45,7 @@ const restartGame = () => {
     isEmpty.value = true;
     squares.value.map(square => {
         square.text = '';
+        square.class = squareClass.value;
     })
 }
 
@@ -51,10 +60,10 @@ const nextSquareValue = (index: any) => {
     checkEmptySquares();
     if (!winner.value && !isEmpty.value) {
         result.value = 'Draw';
-        nextPlayer.value = '-';
+        nextPlayer.value = '';
     } else if (winner.value) {
         result.value = winner.value + ' wins';
-        nextPlayer.value = '-';
+        nextPlayer.value = '';
     }
 }
 
@@ -74,7 +83,10 @@ const checkWinner = () => {
         const [a, b, c] = keys;
 
         if (squares.value[a].text && squares.value[a].text === squares.value[b].text && squares.value[a].text === squares.value[c].text) {
-           winner.value = squares.value[a].text;
+            winner.value = squares.value[a].text;
+            keys.map(key => {
+                squares.value[key].class = squareClass.value + ' bg-red-950 text-yellow-600';
+            })
         }
     })
 }

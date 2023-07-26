@@ -1,14 +1,15 @@
 <template>
-    <div class="square-box">
-        <el-row class="tictactoe" justify="center">
-            <el-col v-for="square in squares" :key="square.keyIndex"  :span="8">
-                <div class="square" @click="nextSquareValue(square.keyIndex)">{{square.text}}</div>
-            </el-col>
-        </el-row>
-    </div>
+    <el-row class="w-72" justify="center">
+        <el-col v-for="square in squares" :key="square.keyIndex" :span="8">
+            <div
+                :class="square.class"
+                @click="nextSquareValue(square.keyIndex)">
+                {{square.text}}
+            </div>
+        </el-col>
+    </el-row>
 </template>
 <script setup>
-import { defineProps } from 'vue';
 
 defineProps({
     squares: {
@@ -25,21 +26,24 @@ const nextSquareValue = (keyIndex) => {
 
 </script>
 <style scoped>
-.square-box {
-    display: flex;
-    justify-content: center;
-    margin-top: 60px;
-}
-.tictactoe {
-    width: 20%;
-}
 .square {
-    border-color: #000000;
+    border-color: #ffffff;
     border-width: 1px;
     border-style: solid;
     padding: 5px;
     font-size: 50px;
     font-weight: bold;
     height: 70px;
+}
+.winner-square {
+    border-color: #ffffff;
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+    font-size: 50px;
+    font-weight: bold;
+    height: 70px;
+    background-color: #740001;
+    color: #eeba30;
 }
 </style>

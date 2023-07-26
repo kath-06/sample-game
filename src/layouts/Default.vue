@@ -2,7 +2,7 @@
   <el-container>
     <main-header>
       <template #headerName>
-        meow-meow
+        meow
       </template>
       <template #headerNav>
         <header-nav :nav-menu="navMenu" />
