@@ -2,8 +2,10 @@
 @use "element-plus/theme-chalk/src/dark/css-vars.scss" as *;
 
 :root {
-  --ep-menu-hover-text-color: #740001;
-  --ep-menu-hover-bg-color: #f4f4f5;
+  --ep-menu-hover-text-color: rgb(8 47 73);
+  --ep-menu-hover-bg-color: rgb(224 242 254);
+  --ep-menu-active-color: rgb(8 47 73);
+  --ep-menu-text-color: rgb(8 47 73);
 }
 
 body {
@@ -25,10 +27,6 @@ code {
   color: var(--ep-color-primary);
 }
 
-.ep-main {
-  background-color: #000000;
-  color: #ffffff;
-}
-.ep-footer {
-  background-color: #ffffff !important;
+.ep-button + .ep-button {
+  margin-left: 0;
 }

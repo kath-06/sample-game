@@ -1,8 +1,8 @@
 <template>
-    <el-row class="w-72" justify="center">
+    <el-row class="w-64 md:w-72" justify="center">
         <el-col v-for="square in squares" :key="square.keyIndex" :span="8">
             <div
-                :class="square.class"
+                :class="'border-2 h-20 text-4xl flex justify-center items-center font-bold border-white' + square.class"
                 @click="nextSquareValue(square.keyIndex)">
                 {{square.text}}
             </div>
@@ -25,25 +25,3 @@ const nextSquareValue = (keyIndex) => {
 }
 
 </script>
-<style scoped>
-.square {
-    border-color: #ffffff;
-    border-width: 1px;
-    border-style: solid;
-    padding: 5px;
-    font-size: 50px;
-    font-weight: bold;
-    height: 70px;
-}
-.winner-square {
-    border-color: #ffffff;
-    border-width: 1px;
-    border-style: solid;
-    padding: 5px;
-    font-size: 50px;
-    font-weight: bold;
-    height: 70px;
-    background-color: #740001;
-    color: #eeba30;
-}
-</style>

@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Default from "../layouts/Default.vue";
+import Home from "../views/Games/GameMenu.vue";
 import TicTacToe from "../views/Games/TicTacToe.vue";
-import Settings from "../views/Settings/Settings.vue";
 
 const routes = [
     {
@@ -11,16 +11,18 @@ const routes = [
             {
                 path: '/',
                 name: 'Games',
-                component: TicTacToe
+                component: Home
             },
             {
-                path: '/settings',
-                name: 'Settings',
-                component: Settings
+                path: '/tictactoe',
+                name: 'TicTacToe',
+                component: TicTacToe
             }
         ]
     }
 ]
+
+console.log(createWebHistory())
 
 const router = createRouter({
     history: createWebHistory(),
