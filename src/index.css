@@ -4,6 +4,19 @@
 @tailwind utilities;
 
 @layer components {
+    /* HEADERS */
+    .header-title-primary {
+        @apply flex bg-clip-text text-transparent bg-gradient-to-r from-sky-950 to-sky-500 text-center;
+    }
+    /* MAIN BODY */
+    .main-body-primary {
+        @apply bg-sky-900 text-white;
+    }
+    /* FOOTER */
+    .footer-primary {
+        @apply bg-sky-950;
+    }
+    /* BUTTONS */
     .btn-primary {
         @apply bg-sky-600 hover:bg-sky-700 text-sky-50 hover:text-sky-50 font-bold cursor-pointer;
     }

@@ -2,15 +2,15 @@
   <el-container>
     <main-header>
       <template #headerName>
-        <span class="flex bg-clip-text text-transparent bg-gradient-to-r from-sky-950 to-sky-500 text-center">
+        <span class="header-title-primary">
           meow
         </span>
       </template>
     </main-header>
-    <el-main class="bg-sky-900 text-white">
+    <el-main class="main-body-primary">
       <router-view />
     </el-main>
-    <el-footer class="bg-sky-950" />
+    <el-footer class="footer-primary" />
   </el-container>
 </template>
 
