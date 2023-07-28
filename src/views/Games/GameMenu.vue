@@ -5,7 +5,7 @@
                 {{ game.title }}
             </div>
             <div class="mt-9">
-                <main-button @button-click="gameLink(game.link)">
+                <main-button button-type="primary" rounded @button-click="gameLink(game.link)">
                     Play
                 </main-button>
             </div>

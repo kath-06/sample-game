@@ -22,8 +22,6 @@ const routes = [
     }
 ]
 
-console.log(createWebHistory())
-
 const router = createRouter({
     history: createWebHistory(),
     routes

@@ -1,7 +1,7 @@
 <template>
     <div class="w-full h-full flex flex-col justify-center content-center">
-        <div class="h-24 font-serif mt-4">
-            <span class="text-4xl md:text-6xl tracking-wide">TicTacToe</span>
+        <div class="h-24 font-bold mt-4 lg:mb-4">
+            <span class="text-4xl lg:text-5xl tracking-wide">TicTacToe</span>
         </div>
         <div class="flex justify-center content-center">
             <square-boxes :squares="squares" @next-square-value="nextSquareValue" />
@@ -13,14 +13,15 @@
             <div class="mr-0 md:mr-2">
                 <main-button
                     v-if="result"
-                    type="danger"
+                    rounded
+                    type="success"
                     @button-click="restartGame"
                 >
                     Restart
                 </main-button>
             </div>
             <div class="mt-2 md:mt-0">
-                <main-button @button-click="back">
+                <main-button rounded type="default" @button-click="back">
                     Back
                 </main-button>
             </div>
