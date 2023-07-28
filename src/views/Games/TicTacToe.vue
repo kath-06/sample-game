@@ -1,7 +1,7 @@
 <template>
-    <div class="w-full h-full flex flex-col justify-center content-center">
-        <div class="h-24 font-bold mt-4 lg:mb-4">
-            <span class="text-4xl lg:text-5xl tracking-wide">TicTacToe</span>
+    <div class="container-flex-col">
+        <div class="h-24 mt-4 lg:mb-4">
+            <span class="title2-white">TicTacToe</span>
         </div>
         <div class="flex justify-center content-center">
             <square-boxes :squares="squares" @next-square-value="nextSquareValue" />
@@ -42,15 +42,15 @@ let result = ref<string>('');
 let nextPlayer = ref<string>('X');
 let isEmpty = ref<boolean>(true);
 let squares = ref([
-    { keyIndex: 0, text: '', class: '' },
-    { keyIndex: 1, text: '', class: '' },
-    { keyIndex: 2, text: '', class: '' },
-    { keyIndex: 3, text: '', class: '' },
-    { keyIndex: 4, text: '', class: '' },
-    { keyIndex: 5, text: '', class: '' },
-    { keyIndex: 6, text: '', class: '' },
-    { keyIndex: 7, text: '', class: '' },
-    { keyIndex: 8, text: '', class: '' }
+    { keyIndex: 0, text: '', class: 'default-square' },
+    { keyIndex: 1, text: '', class: 'default-square' },
+    { keyIndex: 2, text: '', class: 'default-square' },
+    { keyIndex: 3, text: '', class: 'default-square' },
+    { keyIndex: 4, text: '', class: 'default-square' },
+    { keyIndex: 5, text: '', class: 'default-square' },
+    { keyIndex: 6, text: '', class: 'default-square' },
+    { keyIndex: 7, text: '', class: 'default-square' },
+    { keyIndex: 8, text: '', class: 'default-square' }
 ]);
 
 const back = () => {
@@ -66,7 +66,7 @@ const restartGame = () => {
     isEmpty.value = true;
     squares.value.map(square => {
         square.text = '';
-        square.class = '';
+        square.class = 'default-square';
     })
 }
 
@@ -106,7 +106,7 @@ const checkWinner = () => {
         if (squares.value[a].text && squares.value[a].text === squares.value[b].text && squares.value[a].text === squares.value[c].text) {
             winner.value = squares.value[a].text;
             keys.map(key => {
-                squares.value[key].class = ' bg-sky-950 text-sky-200';
+                squares.value[key].class = 'primary-square';
             })
         }
     })

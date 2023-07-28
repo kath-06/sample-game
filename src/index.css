@@ -16,12 +16,26 @@
     .footer-primary {
         @apply bg-sky-950;
     }
+    /* CONTAINERS */
     .page-container {
         @apply w-full h-full flex flex-wrap flex-col md:flex-row justify-center items-center;
     }
+    .container-flex-col {
+        @apply w-full h-full flex flex-col justify-center content-center
+    }
     /* TEXT */
-    .title-primary {
+    .title1-primary {
         @apply text-3xl text-sky-900 font-bold;
+    }
+    .title2-white {
+        @apply text-4xl lg:text-5xl text-white tracking-wide font-bold;
+    }
+    /* TICTACTOE SQUARE */
+    .default-square {
+        @apply border-2 h-20 text-4xl flex justify-center items-center font-bold border-white;
+    }
+    .primary-square {
+        @apply border-2 h-20 text-4xl flex justify-center items-center font-bold border-white bg-sky-950 text-sky-200;
     }
     /* BUTTONS */
     .btn-primary {

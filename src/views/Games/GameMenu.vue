@@ -1,7 +1,7 @@
 <template>
     <div class="page-container">
         <game-card v-for="(game, index) in gameList" :key="index">
-            <div class="title-primary">
+            <div class="title1-primary">
                 {{ game.title }}
             </div>
             <div class="mt-9">
