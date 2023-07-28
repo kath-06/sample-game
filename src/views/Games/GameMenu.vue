@@ -1,7 +1,7 @@
 <template>
-    <div class="w-full h-full flex flex-wrap flex-col md:flex-row justify-center items-center">
+    <div class="page-container">
         <game-card v-for="(game, index) in gameList" :key="index">
-            <div class="text-3xl text-sky-900 font-bold">
+            <div class="title-primary">
                 {{ game.title }}
             </div>
             <div class="mt-9">

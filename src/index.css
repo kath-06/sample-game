@@ -16,6 +16,13 @@
     .footer-primary {
         @apply bg-sky-950;
     }
+    .page-container {
+        @apply w-full h-full flex flex-wrap flex-col md:flex-row justify-center items-center;
+    }
+    /* TEXT */
+    .title-primary {
+        @apply text-3xl text-sky-900 font-bold;
+    }
     /* BUTTONS */
     .btn-primary {
         @apply bg-sky-600 hover:bg-sky-700 text-sky-50 hover:text-sky-50 font-bold cursor-pointer;
