@@ -13,7 +13,7 @@ const router = useRouter()
 function loadingTimeOut () {
     setTimeout(() => {
         router.push('/home')
-    }, 3000) 
+    }, 2500) 
 }
 
 onMounted(() => {
