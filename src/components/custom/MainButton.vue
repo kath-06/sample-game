@@ -1,6 +1,6 @@
 <template>
     <el-button
-        :class="btnType(type, rounded)"
+        :class="btnType(type, rounded) + ` ${transition}`"
         @click="onClick"
     >
         <slot />
@@ -13,6 +13,10 @@ defineProps({
     type: {
         type: String,
         default: 'primary'
+    },
+    transition: {
+        type: String,
+        default: ''
     },
     rounded: {
         type: Boolean,

@@ -5,6 +5,7 @@
 @import '../src/styles/tailwind/card.css';
 @import '../src/styles/tailwind/container.css';
 @import '../src/styles/tailwind/layout.css';
+@import '../src/styles/tailwind/transition.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
