@@ -2,6 +2,12 @@
 
 @layer components {
     /* FADE */
+    .fade-in {
+        @apply animate-fade animate-duration-500 animate-once animate-ease-in;
+    }
+    .fade-up-in {
+        @apply animate-fade-up animate-duration-500 animate-once animate-ease-in;
+    }
     .fade-down-in {
         @apply animate-fade-down animate-duration-500 animate-once animate-ease-in;
     }

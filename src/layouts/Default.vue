@@ -1,16 +1,16 @@
 <template>
   <el-container>
-    <main-header>
+    <main-header class="fade-up-in">
       <template #headerName>
         <span class="header-title-primary">
           meow
         </span>
       </template>
     </main-header>
-    <el-main class="main-body-primary">
+    <el-main class="main-body-primary fade-in animate-delay-500">
       <router-view />
     </el-main>
-    <el-footer class="footer-primary" />
+    <el-footer class="footer-primary fade-down-in" />
   </el-container>
 </template>
 

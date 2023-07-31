@@ -2,6 +2,9 @@
 
 @layer components {
     /* HEADERS */
+    .header-title {
+        @apply text-3xl md:text-4xl font-bold flex justify-center text-center
+    }
     .header-title-primary {
         @apply flex bg-clip-text text-transparent bg-gradient-to-r from-sky-950 to-sky-500 text-center;
     }
@@ -9,8 +12,18 @@
     .main-body-primary {
         @apply bg-sky-900 text-white;
     }
+    .main-body-light-primary {
+        @apply bg-sky-50;
+    }
     /* FOOTER */
     .footer-primary {
         @apply bg-sky-950;
+    }
+    /* LOADING */
+    .loading-primary-spin {
+        @apply w-36 h-36 flex flex-wrap flex-col md:flex-row justify-center items-center text-sky-200 animate-spin dark:text-sky-600 fill-sky-600;
+    }
+    .loading-primary-icon {
+        @apply w-16 h-16 stroke-2 stroke-sky-900 absolute;
     }
 }
