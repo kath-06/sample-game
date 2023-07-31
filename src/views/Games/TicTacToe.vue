@@ -15,13 +15,18 @@
                     v-if="result"
                     rounded
                     type="success"
+                    transition="fade-right-in"
                     @button-click="restartGame"
                 >
                     Restart
                 </main-button>
             </div>
             <div class="mt-2 md:mt-0">
-                <main-button rounded type="default" @button-click="back">
+                <main-button
+                    rounded
+                    type="default"
+                    transition="fade-right-in"
+                    @button-click="back">
                     Back
                 </main-button>
             </div>
@@ -106,7 +111,7 @@ const checkWinner = () => {
         if (squares.value[a].text && squares.value[a].text === squares.value[b].text && squares.value[a].text === squares.value[c].text) {
             winner.value = squares.value[a].text;
             keys.map(key => {
-                squares.value[key].class = 'primary-square';
+                squares.value[key].class = 'primary-square rotate-y-in';
             })
         }
     })

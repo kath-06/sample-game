@@ -1,0 +1,15 @@
+@tailwind components;
+
+@layer components {
+    /* FADE */
+    .fade-down-in {
+        @apply animate-fade-down animate-duration-500 animate-once animate-ease-in;
+    }
+    .fade-right-in {
+        @apply animate-fade-right animate-duration-500 animate-once animate-ease-in;
+    }
+    /* ROTATE */
+    .rotate-y-in {
+        @apply animate-rotate-y animate-once animate-ease-in animate-duration-500;
+    }
+}
