@@ -21,9 +21,9 @@
     }
     /* LOADING */
     .loading-primary-spin {
-        @apply w-36 h-36 flex flex-wrap flex-col md:flex-row justify-center items-center text-sky-200 animate-spin dark:text-sky-600 fill-sky-600;
+        @apply w-32 md:w-40 h-32 md:h-40 flex flex-wrap flex-col md:flex-row justify-center items-center text-sky-200 animate-spin dark:text-sky-600 fill-sky-600;
     }
     .loading-primary-icon {
-        @apply w-16 h-16 stroke-2 stroke-sky-900 absolute;
+        @apply w-12 md:w-20 h-12 md:h-20 stroke-2 stroke-sky-900 absolute;
     }
 }
