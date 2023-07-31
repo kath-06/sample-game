@@ -59,7 +59,7 @@ let squares = ref([
 ]);
 
 const back = () => {
-    router.push('/')
+    router.push('/home')
 }
 
 const restartGame = () => {
