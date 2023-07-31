@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components {
+    /* TICTACTOE SQUARE */
+    .default-square {
+        @apply border-2 h-20 text-4xl flex justify-center items-center font-bold border-white;
+    }
+    .primary-square {
+        @apply border-2 h-20 text-4xl flex justify-center items-center font-bold border-white bg-sky-950 text-sky-200;
+    }
+}

@@ -1,0 +1,16 @@
+@tailwind components;
+
+@layer components {
+    /* HEADERS */
+    .header-title-primary {
+        @apply flex bg-clip-text text-transparent bg-gradient-to-r from-sky-950 to-sky-500 text-center;
+    }
+    /* MAIN BODY */
+    .main-body-primary {
+        @apply bg-sky-900 text-white;
+    }
+    /* FOOTER */
+    .footer-primary {
+        @apply bg-sky-950;
+    }
+}

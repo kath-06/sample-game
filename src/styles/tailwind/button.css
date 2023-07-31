@@ -1,0 +1,35 @@
+@tailwind components;
+
+@layer components {
+    /* BUTTONS */
+    .btn-primary {
+        @apply bg-sky-600 hover:bg-sky-700 text-sky-50 hover:text-sky-50 font-bold cursor-pointer;
+    }
+    .btn-primary-round {
+        @apply rounded-full bg-sky-600 hover:bg-sky-700 text-sky-50 hover:text-sky-50 font-bold cursor-pointer;
+    }
+    .btn-danger {
+        @apply bg-red-600 hover:bg-red-700 text-red-50 hover:text-red-50 font-bold cursor-pointer;
+    }
+    .btn-danger-round {
+        @apply rounded-full bg-red-600 hover:bg-red-700 text-red-50 hover:text-red-50 font-bold cursor-pointer;
+    }
+    .btn-success {
+        @apply bg-teal-600 hover:bg-teal-700 text-teal-50 hover:text-teal-50 font-bold cursor-pointer;
+    }
+    .btn-success-round {
+        @apply rounded-full bg-teal-600 hover:bg-teal-700 text-teal-50 hover:text-teal-50 font-bold cursor-pointer;
+    }
+    .btn-warning {
+        @apply bg-amber-600 hover:bg-amber-700 text-amber-50 hover:text-amber-50 font-bold cursor-pointer;
+    }
+    .btn-warning-round {
+        @apply rounded-full bg-amber-600 hover:bg-amber-700 text-amber-50 hover:text-amber-50 font-bold cursor-pointer;
+    }
+    .btn-default {
+        @apply bg-rose-600 hover:bg-rose-700 text-rose-50 hover:text-rose-50 font-bold cursor-pointer;
+    }
+    .btn-default-round {
+        @apply rounded-full bg-rose-600 hover:bg-rose-700 text-rose-50 hover:text-rose-50 font-bold cursor-pointer;
+    }
+}

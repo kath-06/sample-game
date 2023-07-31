@@ -1,75 +1,10 @@
 /* ./src/index.css */
+@import '../src/styles/tailwind/button.css';
+@import '../src/styles/tailwind/tictactoe.css';
+@import '../src/styles/tailwind/text.css';
+@import '../src/styles/tailwind/card.css';
+@import '../src/styles/tailwind/container.css';
+@import '../src/styles/tailwind/layout.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer components {
-    /* HEADERS */
-    .header-title-primary {
-        @apply flex bg-clip-text text-transparent bg-gradient-to-r from-sky-950 to-sky-500 text-center;
-    }
-    /* MAIN BODY */
-    .main-body-primary {
-        @apply bg-sky-900 text-white;
-    }
-    /* FOOTER */
-    .footer-primary {
-        @apply bg-sky-950;
-    }
-    /* CONTAINERS */
-    .page-container {
-        @apply w-full h-full flex flex-wrap flex-col md:flex-row justify-center items-center;
-    }
-    .container-flex-col {
-        @apply w-full h-full flex flex-col justify-center content-center
-    }
-    /* CARD */
-    .primary-line-card {
-        @apply w-64 md:w-72 h-60 md:h-64 m-2 bg-sky-50 rounded-xl flex justify-center items-center border-sky-500 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110
-    }
-    /* TEXT */
-    .title1-primary {
-        @apply text-3xl text-sky-900 font-bold;
-    }
-    .title2-white {
-        @apply text-4xl lg:text-5xl text-white tracking-wide font-bold;
-    }
-    /* TICTACTOE SQUARE */
-    .default-square {
-        @apply border-2 h-20 text-4xl flex justify-center items-center font-bold border-white;
-    }
-    .primary-square {
-        @apply border-2 h-20 text-4xl flex justify-center items-center font-bold border-white bg-sky-950 text-sky-200;
-    }
-    /* BUTTONS */
-    .btn-primary {
-        @apply bg-sky-600 hover:bg-sky-700 text-sky-50 hover:text-sky-50 font-bold cursor-pointer;
-    }
-    .btn-primary-round {
-        @apply rounded-full bg-sky-600 hover:bg-sky-700 text-sky-50 hover:text-sky-50 font-bold cursor-pointer;
-    }
-    .btn-danger {
-        @apply bg-red-600 hover:bg-red-700 text-red-50 hover:text-red-50 font-bold cursor-pointer;
-    }
-    .btn-danger-round {
-        @apply rounded-full bg-red-600 hover:bg-red-700 text-red-50 hover:text-red-50 font-bold cursor-pointer;
-    }
-    .btn-success {
-        @apply bg-teal-600 hover:bg-teal-700 text-teal-50 hover:text-teal-50 font-bold cursor-pointer;
-    }
-    .btn-success-round {
-        @apply rounded-full bg-teal-600 hover:bg-teal-700 text-teal-50 hover:text-teal-50 font-bold cursor-pointer;
-    }
-    .btn-warning {
-        @apply bg-amber-600 hover:bg-amber-700 text-amber-50 hover:text-amber-50 font-bold cursor-pointer;
-    }
-    .btn-warning-round {
-        @apply rounded-full bg-amber-600 hover:bg-amber-700 text-amber-50 hover:text-amber-50 font-bold cursor-pointer;
-    }
-    .btn-default {
-        @apply bg-rose-600 hover:bg-rose-700 text-rose-50 hover:text-rose-50 font-bold cursor-pointer;
-    }
-    .btn-default-round {
-        @apply rounded-full bg-rose-600 hover:bg-rose-700 text-rose-50 hover:text-rose-50 font-bold cursor-pointer;
-    }
-}

@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components {
+    /* TEXT */
+    .title1-primary {
+        @apply text-3xl text-sky-900 font-bold;
+    }
+    .title2-white {
+        @apply text-4xl lg:text-5xl text-white tracking-wide font-bold;
+    }
+}
