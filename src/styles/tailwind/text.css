@@ -2,6 +2,9 @@
 
 @layer components {
     /* TEXT */
+    .header-primary {
+        @apply flex text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-sky-950 to-sky-500 text-center;
+    }
     .title1-primary {
         @apply text-3xl text-sky-900 font-bold;
     }

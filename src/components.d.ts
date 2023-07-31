@@ -29,6 +29,7 @@ declare module '@vue/runtime-core' {
     HeaderNav: typeof import('./components/layouts/HeaderNav.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     HouseCardWidget: typeof import('./components/widgets/HouseCardWidget.vue')['default']
+    LoadingPage: typeof import('./components/LoadingPage.vue')['default']
     Logos: typeof import('./components/Logos.vue')['default']
     MainButton: typeof import('./components/custom/MainButton.vue')['default']
     MainFooter: typeof import('./components/layouts/MainFooter.vue')['default']
