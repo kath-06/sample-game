@@ -1,15 +1,23 @@
 <template>
     <div class="container-flex-col">
         <div class="h-24 mt-4 lg:mb-4">
-            <span class="title2-white">TicTacToe</span>
+            <span class="title2-white">
+                TicTacToe
+            </span>
         </div>
         <div class="flex justify-center content-center">
-            <square-boxes :squares="squares" @next-square-value="nextSquareValue" />
+            <square-boxes
+                :squares="squares"
+                @next-square-value="nextSquareValue"
+            />
         </div>
         <div>
-            <game-result :nextPlayer="nextPlayer" :game-result="result" />
+            <game-result
+                :nextPlayer="nextPlayer"
+                :game-result="result"
+            />
         </div>
-        <div class="flex flex-col md:flex-row justify-center items-center">
+        <div class="button-container">
             <div class="mr-0 md:mr-2">
                 <main-button
                     v-if="result"
@@ -26,7 +34,8 @@
                     rounded
                     type="default"
                     transition="fade-right-in"
-                    @button-click="back">
+                    @button-click="back"
+                >
                     Back
                 </main-button>
             </div>
@@ -38,6 +47,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useTictactoeStore } from '../../store/tictactoe'
+import { toRoute } from '../../utils/routes'
 
 const router = useRouter()
 const tictactoeStore = useTictactoeStore()
@@ -52,7 +62,7 @@ let isEmpty = ref<boolean>(true)
 let squares : any = ref([])
 
 const back = () => {
-    router.push('/home')
+    router.push('/')
 }
 
 const restartGame = () => {
@@ -62,10 +72,7 @@ const restartGame = () => {
     result.value = ''
     nextPlayer.value = 'X'
     isEmpty.value = true
-    squares.value.map((square: { text: string; class: string }) => {
-        square.text = ''
-        square.class = 'default-square'
-    })
+    setTictatcoeSquare()
 }
 
 const nextSquareValue = (index: any) => {
@@ -119,9 +126,12 @@ const checkEmptySquares = () => {
     })
     isEmpty.value = squareEmpty
 }
-
-onMounted(() => {
+const setTictatcoeSquare = () => {
     tictactoeStore.setSquares(9, 'default-square', '')
     squares.value = tictactoeStore.getSquares
+}
+
+onMounted(() => {
+    setTictatcoeSquare()
 })
 </script>
