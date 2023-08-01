@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { ref, defineProps } from 'vue';
+    import { ref } from 'vue';
     import { smallScreen } from "../../utils/responsive.js"
 
     let isCollapse = ref<Boolean>(false);

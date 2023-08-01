@@ -35,61 +35,54 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { useTictactoeStore } from '../../store/tictactoe'
 
-const router = useRouter();
-let currentValue = ref<any>(0);
-let xIsNext = ref<boolean>(false);
-let winner = ref<string>('');
-let winnerKeys = ref<any>([]);
-let result = ref<string>('');
-let nextPlayer = ref<string>('X');
-let isEmpty = ref<boolean>(true);
-let squares = ref([
-    { keyIndex: 0, text: '', class: 'default-square' },
-    { keyIndex: 1, text: '', class: 'default-square' },
-    { keyIndex: 2, text: '', class: 'default-square' },
-    { keyIndex: 3, text: '', class: 'default-square' },
-    { keyIndex: 4, text: '', class: 'default-square' },
-    { keyIndex: 5, text: '', class: 'default-square' },
-    { keyIndex: 6, text: '', class: 'default-square' },
-    { keyIndex: 7, text: '', class: 'default-square' },
-    { keyIndex: 8, text: '', class: 'default-square' }
-]);
+const router = useRouter()
+const tictactoeStore = useTictactoeStore()
+
+let currentValue = ref<any>(0)
+let xIsNext = ref<boolean>(false)
+let winner = ref<string>('')
+let winnerKeys = ref<any>([])
+let result = ref<string>('')
+let nextPlayer = ref<string>('X')
+let isEmpty = ref<boolean>(true)
+let squares : any = ref([])
 
 const back = () => {
     router.push('/home')
 }
 
 const restartGame = () => {
-    currentValue.value = 0;
-    xIsNext.value = false;
-    winner.value = '';
-    result.value = '';
-    nextPlayer.value = 'X';
-    isEmpty.value = true;
-    squares.value.map(square => {
-        square.text = '';
-        square.class = 'default-square';
+    currentValue.value = 0
+    xIsNext.value = false
+    winner.value = ''
+    result.value = ''
+    nextPlayer.value = 'X'
+    isEmpty.value = true
+    squares.value.map((square: { text: string; class: string }) => {
+        square.text = ''
+        square.class = 'default-square'
     })
 }
 
 const nextSquareValue = (index: any) => {
     if (!squares.value[index].text && !winner.value) {
-        xIsNext.value = currentValue.value % 2 === 0;
-        currentValue.value = !currentValue.value;
-        nextPlayer.value = xIsNext.value ? 'O' : 'X';
-        squares.value[index].text = xIsNext.value ? 'X' : 'O';
+        xIsNext.value = currentValue.value % 2 === 0
+        currentValue.value = !currentValue.value
+        nextPlayer.value = xIsNext.value ? 'O' : 'X'
+        squares.value[index].text = xIsNext.value ? 'X' : 'O'
     }
-    checkWinner();
-    checkEmptySquares();
+    checkWinner()
+    checkEmptySquares()
     if (!winner.value && !isEmpty.value) {
-        result.value = 'Draw';
-        nextPlayer.value = '';
+        result.value = 'Draw'
+        nextPlayer.value = ''
     } else if (winner.value) {
-        result.value = winner.value + ' wins';
-        nextPlayer.value = '';
+        result.value = winner.value + ' wins'
+        nextPlayer.value = ''
     }
 }
 
@@ -106,24 +99,29 @@ const checkWinner = () => {
     ]
 
     squareKeys.map(keys => {
-        const [a, b, c] = keys;
+        const [a, b, c] = keys
 
         if (squares.value[a].text && squares.value[a].text === squares.value[b].text && squares.value[a].text === squares.value[c].text) {
-            winner.value = squares.value[a].text;
+            winner.value = squares.value[a].text
             keys.map(key => {
-                squares.value[key].class = 'primary-square rotate-y-in';
+                squares.value[key].class = 'primary-square rotate-y-in'
             })
         }
     })
 }
 
 const checkEmptySquares = () => {
-    let squareEmpty = false;
-    squares.value.map(square => {
+    let squareEmpty = false
+    squares.value.map((square: { text: any }) => {
         if(!square.text) {
-            squareEmpty = true;
+            squareEmpty = true
         }
     })
-    isEmpty.value = squareEmpty;
+    isEmpty.value = squareEmpty
 }
+
+onMounted(() => {
+    tictactoeStore.setSquares(9, 'default-square', '')
+    squares.value = tictactoeStore.getSquares
+})
 </script>
