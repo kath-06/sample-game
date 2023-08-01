@@ -11,6 +11,7 @@ export const useTictactoeStore = defineStore('tictactoeStore', {
     },
     actions: {
         setSquares(squareCount, squareClass, squareText) {
+            this.squares = []
             for(let i = 0; i < squareCount; i++) {
                 this.squares.push({ keyIndex: i, text: squareText, class: squareClass })
             }
