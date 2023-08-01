@@ -11,4 +11,7 @@
     .title2-white {
         @apply text-4xl lg:text-5xl text-white tracking-wide font-bold;
     }
+    .subtitle-primary {
+        @apply text-lg text-sky-900 font-bold;
+    }
 }

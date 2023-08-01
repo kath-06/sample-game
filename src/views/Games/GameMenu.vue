@@ -4,6 +4,9 @@
             <div class="title1-primary">
                 {{ game.title }}
             </div>
+            <div class="subtitle-primary mt-2">
+                ({{ game.subtitle }})
+            </div>
             <div class="mt-9">
                 <main-button button-type="primary" rounded @button-click="gameLink(game.link)">
                     Play
@@ -19,7 +22,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const gameList = ref([
-    { title: 'TicTacToe', link: '/tictactoe' }
+    { title: 'TicTacToe', subtitle: '2 players', link: '/tictactoe' }
 ])
 
 const gameLink = (link: string) => {

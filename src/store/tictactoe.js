@@ -3,7 +3,8 @@ import { defineStore } from 'pinia'
 export const useTictactoeStore = defineStore('tictactoeStore', {
     state: () => {
         return {
-            squares: []
+            squares: [],
+            shapes: []
         }
     },
     getters: {
