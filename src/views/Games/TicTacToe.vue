@@ -32,7 +32,7 @@
             <div class="mt-2 md:mt-0">
                 <main-button
                     rounded
-                    type="default"
+                    type="danger"
                     transition="fade-right-in"
                     @button-click="back"
                 >

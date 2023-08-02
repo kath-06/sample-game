@@ -18,4 +18,8 @@
     .rotate-y-in {
         @apply animate-rotate-y animate-once animate-ease-in animate-duration-500;
     }
+    /* HOVER TRANSLATE */
+    .hover-translate-y {
+        @apply transition ease-in-out hover:-translate-y-1 hover:scale-110
+    }
 }
