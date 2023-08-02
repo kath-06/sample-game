@@ -6,6 +6,7 @@
 @import '../src/styles/tailwind/container.css';
 @import '../src/styles/tailwind/layout.css';
 @import '../src/styles/tailwind/transition.css';
+@import '../src//styles/tailwind/table.css';
 
 @tailwind base;
 @tailwind components;

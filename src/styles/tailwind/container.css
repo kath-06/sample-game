@@ -5,8 +5,14 @@
     .page-container {
         @apply w-full h-full flex flex-nowrap md:flex-wrap flex-col md:flex-row justify-center items-center;
     }
+    .page-header {
+        @apply w-full h-20 flex justify-center md:self-start items-center;
+    }
     .container-flex-col {
-        @apply w-full h-full flex flex-col justify-center content-center;
+        @apply w-full h-full flex flex-col justify-center content-center items-center md:items-start;
+    }
+    .container-flex-row {
+        @apply w-full h-full flex flex-row;
     }
     .button-container {
         @apply flex flex-col md:flex-row justify-center items-center;
