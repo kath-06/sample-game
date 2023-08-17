@@ -8,4 +8,7 @@
     .primary-square {
         @apply border-2 h-20 text-4xl flex justify-center items-center font-bold border-white bg-sky-950 text-sky-200;
     }
+    .kath-badge {
+      @apply inline-block w-9 whitespace-nowrap px-[0.65em] pb-5 text-center align-baseline text-[0.75em] font-bold leading-none;
+    }
 }

@@ -5,7 +5,7 @@
                 {{ getRouteName() }}
             </span>
         </div>
-        <div class="container-flex-col md:container-flex-row md:p-12 fade-down-in animate-delay-600">
+        <div class="container-flex-col h-fit md:container-flex-row md:p-12 fade-down-in animate-delay-600">
             <span class="w-80 flex justify-center" v-for="(card, index) in settingCards" :key="index">
                 <settings-card
                     :title="card.title"

@@ -5,12 +5,12 @@
         @apply w-full text-sm text-left text-sky-900 dark:text-sky-800;
     }
     .primary-table-header {
-        @apply text-xs text-sky-700 uppercase bg-sky-100 dark:bg-sky-700 dark:text-sky-400;
+        @apply text-center text-sky-700 uppercase bg-sky-100 dark:bg-sky-700 dark:text-sky-400;
     }
     .primary-table-header-row {
         @apply bg-sky-50;
     }
     .primary-table-row {
-        @apply bg-white border-b dark:bg-sky-800 dark:border-sky-700 hover:bg-sky-50 dark:hover:bg-sky-600;
+        @apply bg-white border-b dark:bg-sky-800 dark:border-sky-700 hover:bg-sky-50 dark:hover:bg-sky-600 text-center;
     }
 }
