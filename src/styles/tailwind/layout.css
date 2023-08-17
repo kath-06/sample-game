@@ -26,4 +26,8 @@
     .loading-primary-icon {
         @apply w-12 md:w-20 h-12 md:h-20 stroke-2 stroke-sky-900 absolute;
     }
+    /* DIALOG */
+    .dialog-primary-header {
+      @apply p-5 text-2xl text-sky-500 bg-sky-950 font-bold;
+    }
 }

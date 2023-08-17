@@ -47,17 +47,9 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useTictactoeStore } from '../../store/tictactoe'
-// import { getDatabase, ref as dbRef, onValue } from 'firebase/database'
-// import { firebaseApp } from '~/firebase/firebase.init'
 
 const router = useRouter()
 const tictactoeStore = useTictactoeStore()
-// const db = getDatabase(firebaseApp)
-
-// const shapeRef = dbRef(db, 'tictactoe_shapes');
-// onValue(shapeRef, (snapshot) => {
-//   const data = snapshot.val();
-// });
 
 let currentValue = ref<any>(0)
 let xIsNext = ref<boolean>(false)
