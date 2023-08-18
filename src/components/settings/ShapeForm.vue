@@ -1,5 +1,5 @@
 <template>
-  <kath-dialog :visible="visible" title="TicTacToe Shape">
+  <kath-dialog :visible="visible" :title="isEdit ? 'Edit Shape' : 'Add Shape'">
     <template #body>
       <el-form ref="shapeFormRef" :model="shape" :rules="shapeRules">
         <el-row :gutter="10">
@@ -25,11 +25,11 @@
       <main-button
         class="mr-1 ml-1"
         rounded
-        type="success"
+        :type="isEdit ? 'warning' : 'success'"
         translate="fade-right-in"
         @button-click="onSubmit"
       >
-        Save
+        {{ isEdit ? "Update" : "Save" }}
       </main-button>
       <main-button
         class="mr-1 ml-1"
@@ -44,7 +44,7 @@
   </kath-dialog>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, onUpdated, ref } from "vue";
 
 const props = defineProps({
   visible: {
@@ -54,6 +54,10 @@ const props = defineProps({
   isEdit: {
     type: Boolean,
     default: false,
+  },
+  editData: {
+    type: Object,
+    default: {},
   },
 });
 const emit = defineEmits(["onCancel", "onSubmit"]);
@@ -79,6 +83,24 @@ const onCancel = () => {
   emit("onCancel");
 };
 const onSubmit = () => {
-  emit("onSubmit", shapeFormRef.value, shape.value);
+  const submitParams = {
+    shape: shape.value,
+    isEdit: props.isEdit,
+    editData: props.editData,
+  };
+  emit("onSubmit", shapeFormRef.value, submitParams);
 };
+
+const setShapeData = (data: any) => {
+  shape.value.name = data.shapeName;
+  shape.value.character = data.shape;
+  shape.value.color = data.shapeColor;
+};
+
+onUpdated(() => {
+  shapeFormRef.value.resetFields();
+  if (props.isEdit) {
+    setShapeData(props.editData);
+  }
+});
 </script>

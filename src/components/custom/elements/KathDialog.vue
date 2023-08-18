@@ -1,13 +1,13 @@
 <template>
   <el-dialog
-    class="w-11/12 lg:w-6/12"
+    class="w-11/12 lg:w-6/12 rounded-md"
     :model-value="visible"
     align-center
     :close-on-click-modal="false"
     :show-close="false"
   >
     <template #header>
-      <div class="dialog-primary-header">{{ title }}</div>
+      <div class="dialog-primary-header rounded-t-md">{{ title }}</div>
     </template>
     <slot name="body" />
     <template #footer>

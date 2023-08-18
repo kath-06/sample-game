@@ -13,4 +13,10 @@
     .primary-table-row {
         @apply bg-white border-b dark:bg-sky-800 dark:border-sky-700 hover:bg-sky-50 dark:hover:bg-sky-600 text-center;
     }
+    .btn-default-tbl-dropdown {
+      @apply bg-rose-600 hover:bg-rose-700 text-rose-50 hover:text-rose-50 font-bold cursor-pointer p-1 rounded-md focus-visible:outline-rose-900;
+    }
+    .default-tbl-dropdown-item {
+      @apply text-rose-800 hover:bg-rose-100 focus:bg-rose-100 focus:text-rose-800 !important;
+    }
 }

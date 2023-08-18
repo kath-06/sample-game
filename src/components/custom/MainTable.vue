@@ -24,12 +24,20 @@
             v-for="(column, columnIndex) in columns"
             :key="columnIndex"
           >
-            <span v-for="(data, itemIndex) in item" :key="itemIndex">
-              <span v-if="column.useSlot && column.prop === itemIndex">
-                <slot :name="column.slotName" :data="item" />
-              </span>
-              <span v-else>
-                {{ column.prop === itemIndex ? data : "" }}
+            <span v-if="column.useSlot && column.prop === 'action'">
+              <slot :name="column.slotName" :data="item" />
+            </span>
+            <span v-else>
+              <span v-for="(data, itemIndex) in item" :key="itemIndex">
+                <span v-if="column.useSlot && column.prop === itemIndex">
+                  <slot :name="column.slotName" :data="item" />
+                </span>
+                <span v-else-if="column.useSlot && column.prop === 'action'">
+                  <slot :name="column.slotName" :data="item" />
+                </span>
+                <span v-else>
+                  {{ column.prop === itemIndex ? data : "" }}
+                </span>
               </span>
             </span>
           </td>
