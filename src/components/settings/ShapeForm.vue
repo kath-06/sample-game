@@ -1,7 +1,12 @@
 <template>
   <kath-dialog :visible="visible" :title="isEdit ? 'Edit Shape' : 'Add Shape'">
     <template #body>
-      <el-form ref="shapeFormRef" :model="shape" :rules="shapeRules">
+      <el-form
+        ref="shapeFormRef"
+        :model="shape"
+        :rules="shapeRules"
+        :disabled="loading"
+      >
         <el-row :gutter="10">
           <el-col :span="24" :lg="12">
             <el-form-item label="Shape Name" prop="name">
@@ -27,6 +32,8 @@
         rounded
         :type="isEdit ? 'warning' : 'success'"
         translate="fade-right-in"
+        :icon="isEdit ? 'EditPen' : 'Check'"
+        :loading="loading"
         @button-click="onSubmit"
       >
         {{ isEdit ? "Update" : "Save" }}
@@ -36,6 +43,8 @@
         rounded
         type="danger"
         translate="fade-right-in"
+        icon="Close"
+        :disabled="loading"
         @button-click="onCancel"
       >
         Cancel
@@ -58,6 +67,10 @@ const props = defineProps({
   editData: {
     type: Object,
     default: {},
+  },
+  loading: {
+    type: Boolean,
+    default: false,
   },
 });
 const emit = defineEmits(["onCancel", "onSubmit"]);

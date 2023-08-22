@@ -20,4 +20,20 @@
     .subtitle-primary {
         @apply text-sm md:text-base text-slate-500 font-medium;
     }
+    /* MESSAGE BOX */
+    .msg-box-primary-text {
+      @apply text-sky-600 bg-sky-50 !important;
+    }
+    .msg-box-success-text {
+      @apply text-teal-600 bg-teal-50 !important;
+    }
+    .msg-box-danger-text {
+      @apply text-red-600 bg-red-50 !important;
+    }
+    .msg-box-warning-text {
+      @apply text-amber-600 bg-amber-50 !important;
+    }
+    .msg-box-default-text {
+      @apply text-rose-600 bg-rose-50 !important;
+    }
 }

@@ -1,20 +1,24 @@
 <template>
   <el-button
-    v-if="!icon"
-    :class="btnType(type, rounded) + ` ${transition} main-btn`"
+    v-if="!showIconOnly"
+    :class="btnType(type, rounded) + ` ${transition} main-btn lg:visible`"
+    :icon="icon"
+    :loading="loading"
     @click="onClick"
   >
     <slot />
   </el-button>
   <el-button
-    v-else-if="icon"
+    v-else-if="showIconOnly"
     :class="btnType(type, rounded) + ` ${transition}`"
     :circle="circle"
     :icon="icon"
+    :loading="loading"
     @click="onClick"
   />
 </template>
 <script lang="ts" setup>
+import { fa } from "element-plus/es/locale";
 import { buttonTypes } from "~/composables";
 
 defineProps({
@@ -38,6 +42,14 @@ defineProps({
     type: String,
     default: "",
   },
+  showIconOnly: {
+    type: Boolean,
+    default: false,
+  },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const emit = defineEmits(["buttonClick"]);
@@ -60,6 +72,6 @@ const btnType = (type: string, rounded: boolean) => {
 </script>
 <style scoped>
 .main-btn {
-  width: 150px;
+  width: 120px;
 }
 </style>
