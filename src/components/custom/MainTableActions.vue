@@ -4,6 +4,7 @@
       <main-button
         :type="action.type"
         :icon="action.icon"
+        :show-icon-only="true"
         circle
         @click="onClick(action.action)"
       />

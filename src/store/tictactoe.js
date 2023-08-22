@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { getDatabase, ref as dbRef, onValue, set, update, child } from 'firebase/database'
+import { getDatabase, ref as dbRef, onValue, set, update, remove } from 'firebase/database'
 import { firebaseApp } from '~/firebase/firebase.init'
 
 const tictactoeDB = getDatabase(firebaseApp)
@@ -75,7 +75,7 @@ export const useTictactoeStore = defineStore('tictactoeStore', {
       });
     },
     removeShape(shapeId) {
-      remove(dbRef(tictactoeDB, `tictactoe_shapes/${shapeId}`))
+      remove(dbRef(tictactoeDB, 'tictactoe_shapes/' + shapeId))
         .then(() => {
           this.removeResponse = 'success'
         }).catch((error) => {

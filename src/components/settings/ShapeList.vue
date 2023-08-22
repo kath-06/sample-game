@@ -6,6 +6,7 @@
           rounded
           type="success"
           transition="fade-right-in"
+          icon="Plus"
           @button-click="formAction(false)"
         >
           Add
@@ -28,13 +29,24 @@
       :visible="shapeDialog"
       :is-edit="action"
       :edit-data="editData"
+      :loading="loading"
       @on-cancel="shapeDialog = false"
       @on-submit="submitShape"
+    />
+    <confirm-message-box
+      :visible="openConfirmBox"
+      type="warning"
+      header-title="Delete Shape"
+      message="Are you sure you want to delete this shape?"
+      :loading="loading"
+      @on-cancel="cancelConfirmBox"
+      @on-confirm="deleteShape"
     />
   </div>
 </template>
 <script lang="ts" setup>
 import { ElMessage, ElMessageBox, FormInstance } from "element-plus";
+import { tr } from "element-plus/es/locale";
 import { onMounted, ref, watchEffect } from "vue";
 import { useTictactoeStore } from "../../store/tictactoe";
 
@@ -57,10 +69,14 @@ const tableColumns = ref([
 ]);
 const tableActions = ref([
   { type: "warning", icon: "Edit", name: "Edit", action: "edit" },
+  { type: "danger", icon: "Delete", name: "Delete", action: "delete" },
 ]);
 const tableItems = ref([]);
 const shapeDialog = ref<boolean>(false);
 const action = ref<boolean>(false);
+const openConfirmBox = ref<boolean>(false);
+const shapeId = ref<number>();
+const loading = ref<boolean>();
 
 let editData = ref([]);
 
@@ -84,37 +100,11 @@ const submitShape = async (formEl: FormInstance | undefined, params: any) => {
   await formEl.validate((valid, fields) => {
     if (valid) {
       if (params.isEdit) {
-        tictactoeStore.updateShape(params.editData.id, params.shape);
-        if (tictactoeStore.getEditResponse === "success") {
-          shapeDialog.value = false;
-          ElMessage({
-            message: "Shape was updated successfully.",
-            type: "success",
-            duration: 5000,
-          });
-        } else {
-          ElMessage({
-            message: "Oops, updating shape was failed.",
-            type: "error",
-            duration: 5000,
-          });
-        }
+        loading.value = true;
+        updateShape(params);
       } else if (!params.isEdit) {
-        tictactoeStore.setShapes(tableItems.value.length, params.shape);
-        if (tictactoeStore.getAddResponse === "success") {
-          shapeDialog.value = false;
-          ElMessage({
-            message: "Shape was added successfully.",
-            type: "success",
-            duration: 5000,
-          });
-        } else {
-          ElMessage({
-            message: "Oops, adding new shape was failed.",
-            type: "error",
-            duration: 5000,
-          });
-        }
+        loading.value = true;
+        addShape(params);
       }
     } else {
       console.log("error", fields);
@@ -122,35 +112,79 @@ const submitShape = async (formEl: FormInstance | undefined, params: any) => {
   });
 };
 
-const confirmRemove = (shapeId: number) => {
-  ElMessageBox.confirm("Shape will permanently delete. Continue?", "Warning", {
-    title: "Delete Shape",
-    confirmButtonText: "OK",
-    cancelButtonText: "Cancel",
-    type: "warning",
-    center: true,
-  })
-    .then(() => {
-      removeShape(shapeId);
-    })
-    .catch(() => {
+const addShape = (params: any) => {
+  tictactoeStore.setShapes(tableItems.value.length, params.shape);
+  setTimeout(() => {
+    if (tictactoeStore.getAddResponse === "success") {
+      shapeDialog.value = false;
       ElMessage({
-        type: "info",
-        message: "Delete canceled",
+        message: "Shape was added successfully.",
+        type: "success",
+        duration: 5000,
       });
-    });
+    } else {
+      ElMessage({
+        message: "Oops, adding new shape was failed.",
+        type: "error",
+        duration: 5000,
+      });
+    }
+    loading.value = false;
+  }, 2000);
 };
-const removeShape = (shapeId: number) => {
-  tictactoeStore.removeShape(shapeId);
-  if (tictactoeStore.getRemoveResponse === "success") {
-    ElMessage({
-      message: "Shape was deleted successfully.",
-      type: "success",
-      duration: 5000,
-    });
+
+const updateShape = (params: any) => {
+  tictactoeStore.updateShape(params.editData.id, params.shape);
+  setTimeout(() => {
+    if (tictactoeStore.getEditResponse === "success") {
+      shapeDialog.value = false;
+      ElMessage({
+        message: "Shape was updated successfully.",
+        type: "success",
+        duration: 5000,
+      });
+    } else {
+      ElMessage({
+        message: "Oops, updating shape was failed.",
+        type: "error",
+        duration: 5000,
+      });
+    }
+    loading.value = false;
+  }, 2000);
+};
+const confirmRemove = (id: number) => {
+  openConfirmBox.value = true;
+  shapeId.value = id;
+};
+const cancelConfirmBox = () => {
+  openConfirmBox.value = false;
+  shapeId.value = undefined;
+};
+const deleteShape = () => {
+  if (shapeId) {
+    loading.value = true;
+    tictactoeStore.removeShape(shapeId.value);
+    setTimeout(() => {
+      if (tictactoeStore.getRemoveResponse === "success") {
+        ElMessage({
+          message: "Shape was deleted successfully.",
+          type: "success",
+          duration: 5000,
+        });
+        cancelConfirmBox();
+      } else {
+        ElMessage({
+          message: "Oops, deleting was failed.",
+          type: "error",
+          duration: 5000,
+        });
+      }
+      loading.value = false;
+    }, 2000);
   } else {
     ElMessage({
-      message: "Oops, deleting was failed.",
+      message: "Oops, deleting was failed. Can't find the shape id.",
       type: "error",
       duration: 5000,
     });
