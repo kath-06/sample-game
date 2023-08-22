@@ -14,6 +14,12 @@
       </div>
     </div>
     <main-table :columns="tableColumns" :items="tableItems">
+      <template #shape="scope">
+        <span class="text-2xl" :style="`color: ${scope.data.shapeColor}`">
+          {{ scope.data.shape }}
+        </span>
+        <span class="ml-3 font-bold"> - {{ scope.data.shapeName }} </span>
+      </template>
       <template #badge="scope">
         <kath-badge :badge-color="scope.data.shapeColor" />
       </template>
@@ -52,8 +58,7 @@ import { useTictactoeStore } from "../../store/tictactoe";
 
 const tictactoeStore = useTictactoeStore();
 const tableColumns = ref([
-  { name: "Name", prop: "shapeName" },
-  { name: "Shape", prop: "shape" },
+  { name: "Shape", prop: "shape", useSlot: "true", slotName: "shape" },
   {
     name: "Color",
     prop: "shapeColor",
