@@ -1,6 +1,7 @@
 @tailwind components;
 
 @layer components {
+    /* PRIMARY TABLE */
     .primary-table {
         @apply w-full text-sm text-left text-sky-900 dark:text-sky-800;
     }
@@ -13,10 +14,145 @@
     .primary-table-row {
         @apply bg-white border-b dark:bg-sky-800 dark:border-sky-700 hover:bg-sky-50 dark:hover:bg-sky-600 text-center;
     }
-    .btn-default-tbl-dropdown {
-      @apply bg-rose-600 hover:bg-rose-700 text-rose-50 hover:text-rose-50 font-bold cursor-pointer p-1 rounded-md focus-visible:outline-rose-900;
+    /* TABLE ACTION DROWDOWNS */
+    .btn-primary-tbl-dropdown {
+      @apply bg-sky-600 hover:bg-sky-700 text-sky-50 hover:text-sky-50 font-bold cursor-pointer p-1 rounded-md focus-visible:outline-sky-900;
     }
-    .default-tbl-dropdown-item {
-      @apply text-rose-800 hover:bg-rose-100 focus:bg-rose-100 focus:text-rose-800 !important;
+    .primary-tbl-dropdown-item {
+      @apply text-sky-800 hover:bg-sky-100 focus:bg-sky-100 focus:text-sky-800 !important;
     }
+    /* PAGINATION */
+    .primary-table-pagination .btn-prev, .primary-table-pagination .btn-next{
+      @apply text-sky-900 bg-sky-50 disabled:text-sky-200 !important;
+    }
+    .primary-table-pagination .ep-pager li {
+      @apply text-sky-900 bg-sky-50 !important;
+    }
+    .primary-table-pagination .ep-pager li.is-active {
+      @apply text-sky-50 bg-sky-900 !important;
+    }
+  
+  /* DEFAULT TABLE */
+  .default-table {
+    @apply w-full text-sm text-left text-rose-900 dark:text-rose-800;
+  }
+  .default-table-header {
+      @apply text-center text-rose-700 uppercase bg-rose-100 dark:bg-rose-700 dark:text-rose-400;
+  }
+  .default-table-header-row {
+      @apply bg-rose-50;
+  }
+  .default-table-row {
+      @apply bg-white border-b dark:bg-rose-800 dark:border-rose-700 hover:bg-rose-50 dark:hover:bg-rose-600 text-center;
+  }
+  /* TABLE ACTION DROWDOWNS */
+  .btn-default-tbl-dropdown {
+    @apply bg-rose-600 hover:bg-rose-700 text-rose-50 hover:text-rose-50 font-bold cursor-pointer p-1 rounded-md focus-visible:outline-rose-900;
+  }
+  .default-tbl-dropdown-item {
+    @apply text-rose-800 hover:bg-rose-100 focus:bg-rose-100 focus:text-rose-800 !important;
+  }
+  /* PAGINATION */
+  .default-table-pagination .btn-prev, .default-table-pagination .btn-next{
+    @apply text-rose-900 bg-rose-50 disabled:text-rose-200 !important;
+  }
+  .default-table-pagination .ep-pager li {
+    @apply text-rose-900 bg-rose-50 !important;
+  }
+  .default-table-pagination .ep-pager li.is-active {
+    @apply text-rose-50 bg-rose-900 !important;
+  }
+
+  /* SUCCESS TABLE */
+  .success-table {
+    @apply w-full text-sm text-left text-teal-900 dark:text-teal-800;
+  }
+  .success-table-header {
+      @apply text-center text-teal-700 uppercase bg-teal-100 dark:bg-teal-700 dark:text-teal-400;
+  }
+  .success-table-header-row {
+      @apply bg-teal-50;
+  }
+  .success-table-row {
+      @apply bg-white border-b dark:bg-teal-800 dark:border-teal-700 hover:bg-teal-50 dark:hover:bg-teal-600 text-center;
+  }
+  /* TABLE ACTION DROWDOWNS */
+  .btn-success-tbl-dropdown {
+    @apply bg-teal-600 hover:bg-teal-700 text-teal-50 hover:text-teal-50 font-bold cursor-pointer p-1 rounded-md focus-visible:outline-teal-900;
+  }
+  .success-tbl-dropdown-item {
+    @apply text-teal-800 hover:bg-teal-100 focus:bg-teal-100 focus:text-teal-800 !important;
+  }
+  /* PAGINATION */
+  .success-table-pagination .btn-prev, .success-table-pagination .btn-next{
+    @apply text-teal-900 bg-teal-50 disabled:text-teal-200 !important;
+  }
+  .success-table-pagination .ep-pager li {
+    @apply text-teal-900 bg-teal-50 !important;
+  }
+  .success-table-pagination .ep-pager li.is-active {
+    @apply text-teal-50 bg-teal-900 !important;
+  }
+
+  /* DANGER TABLE */
+  .danger-table {
+    @apply w-full text-sm text-left text-red-900 dark:text-red-800;
+  }
+  .danger-table-header {
+      @apply text-center text-red-700 uppercase bg-red-100 dark:bg-red-700 dark:text-red-400;
+  }
+  .danger-table-header-row {
+      @apply bg-red-50;
+  }
+  .danger-table-row {
+      @apply bg-white border-b dark:bg-red-800 dark:border-red-700 hover:bg-red-50 dark:hover:bg-red-600 text-center;
+  }
+  /* TABLE ACTION DROWDOWNS */
+  .btn-danger-tbl-dropdown {
+    @apply bg-red-600 hover:bg-red-700 text-red-50 hover:text-red-50 font-bold cursor-pointer p-1 rounded-md focus-visible:outline-red-900;
+  }
+  .danger-tbl-dropdown-item {
+    @apply text-red-800 hover:bg-red-100 focus:bg-red-100 focus:text-red-800 !important;
+  }
+  /* PAGINATION */
+  .danger-table-pagination .btn-prev, .danger-table-pagination .btn-next{
+    @apply text-red-900 bg-red-50 disabled:text-red-200 !important;
+  }
+  .danger-table-pagination .ep-pager li {
+    @apply text-red-900 bg-red-50 !important;
+  }
+  .danger-table-pagination .ep-pager li.is-active {
+    @apply text-red-50 bg-red-900 !important;
+  }
+
+  /* WARNING TABLE */
+  .warning-table {
+    @apply w-full text-sm text-left text-amber-900 dark:text-amber-800;
+  }
+  .warning-table-header {
+      @apply text-center text-amber-700 uppercase bg-amber-100 dark:bg-amber-700 dark:text-amber-400;
+  }
+  .warning-table-header-row {
+      @apply bg-amber-50;
+  }
+  .warning-table-row {
+      @apply bg-white border-b dark:bg-amber-800 dark:border-amber-700 hover:bg-amber-50 dark:hover:bg-amber-600 text-center;
+  }
+  /* TABLE ACTION DROWDOWNS */
+  .btn-warning-tbl-dropdown {
+    @apply bg-amber-600 hover:bg-amber-700 text-amber-50 hover:text-amber-50 font-bold cursor-pointer p-1 rounded-md focus-visible:outline-amber-900;
+  }
+  .warning-tbl-dropdown-item {
+    @apply text-amber-800 hover:bg-amber-100 focus:bg-amber-100 focus:text-amber-800 !important;
+  }
+  /* PAGINATION */
+  .warning-table-pagination .btn-prev, .warning-table-pagination .btn-next{
+    @apply text-amber-900 bg-amber-50 disabled:text-amber-200 !important;
+  }
+  .warning-table-pagination .ep-pager li {
+    @apply text-amber-900 bg-amber-50 !important;
+  }
+  .warning-table-pagination .ep-pager li.is-active {
+    @apply text-amber-50 bg-amber-900 !important;
+  }
 }
