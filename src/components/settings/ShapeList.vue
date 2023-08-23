@@ -13,7 +13,12 @@
         </main-button>
       </div>
     </div>
-    <main-table :columns="tableColumns" :items="tableItems">
+    <main-table
+      :columns="tableColumns"
+      :items="tableItems"
+      :page-size="5"
+      table-type="primary"
+    >
       <template #shape="scope">
         <span class="text-2xl" :style="`color: ${scope.data.shapeColor}`">
           {{ scope.data.shape }}
@@ -27,7 +32,9 @@
         <main-table-actions
           :actions="tableActions"
           :data="scope.data"
+          :action-type="scope.type"
           @on-click="actionClick"
+          @on-reload="reloadData"
         />
       </template>
     </main-table>
@@ -196,13 +203,16 @@ const deleteShape = () => {
   }
 };
 
-watchEffect(() => {
+const reloadData = () => {
   tictactoeStore.getShapeList();
   tableItems.value = tictactoeStore.getShapes;
+};
+
+watchEffect(() => {
+  reloadData();
 });
 
 onMounted(() => {
-  tictactoeStore.getShapeList();
-  tableItems.value = tictactoeStore.getShapes;
+  reloadData();
 });
 </script>
