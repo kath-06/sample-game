@@ -9,12 +9,16 @@ export const usePlayerStore = defineStore('playerStore', {
     return {
       addResponse: '',
       dateToday: new Date(),
-      players: []
+      players: [],
+      player: {},
+      editResponse: ''
     }
   },
   getters: {
     getAddResponse: (state) => state.addResponse,
-    getPlayers: (state) => state.players
+    getPlayers: (state) => state.players,
+    getPlayer: (state) => state.player,
+    getEditResponse: (state) => state.editResponse
   },
   actions: {
     setPlayers(playerId, player) {
@@ -38,6 +42,25 @@ export const usePlayerStore = defineStore('playerStore', {
       onValue(playerRef, (snapshot) => {
         this.players = snapshot.val()
       });
-    }
+    },
+    getPlayerData(playerId) {
+      const playerRef = dbRef(tictactoeDB, `tictactoe_players/${playerId}`)
+
+      onValue(playerRef, (snapshot) => {
+        this.player = snapshot.val()
+      })
+    },
+    updatePlayer(playerId, player) {
+      update(dbRef(tictactoeDB, `tictactoe_players/${playerId}`), {
+        playerName: player.name,
+        shapeReference: player.shape,
+        dateModified: this.dateToday.toDateString()
+      }).then(() => {
+        this.editResponse = 'success'
+      }).catch((error) => {
+        console.log(error)
+        this.editResponse = 'error'
+      });
+    },
   }
 })
