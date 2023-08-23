@@ -92,6 +92,7 @@ const submitPlayer = async (formEl: FormInstance | undefined, params: any) => {
     if (valid) {
       if (params.isEdit) {
         loading.value = true;
+        updatePlayer(params);
       } else if (!params.isEdit) {
         loading.value = true;
         addPlayer(params);
@@ -147,6 +148,26 @@ const getShapeName = (shapeId: number) => {
   });
 
   return shapeName;
+};
+const updatePlayer = (params: any) => {
+  playerStore.updatePlayer(params.editData.id, params.player);
+  setTimeout(() => {
+    if (playerStore.getEditResponse === "success") {
+      playerDialog.value = false;
+      ElMessage({
+        message: "Player was updated successfully.",
+        type: "success",
+        duration: 5000,
+      });
+    } else {
+      ElMessage({
+        message: "Oops, updating player was failed.",
+        type: "error",
+        duration: 5000,
+      });
+    }
+    loading.value = false;
+  }, 2000);
 };
 
 watchEffect(() => {
