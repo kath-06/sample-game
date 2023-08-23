@@ -1,13 +1,11 @@
 <template>
-    <el-row class="w-64 md:w-72" justify="center">
-        <el-col v-for="square in squares" :key="square.keyIndex" :span="8">
-            <div
-                :class="square.class"
-                @click="nextSquareValue(square.keyIndex)">
-                {{square.text}}
-            </div>
-        </el-col>
-    </el-row>
+  <el-row class="w-64 md:w-72" justify="center">
+    <el-col v-for="square in squares" :key="square.keyIndex" :span="8">
+      <div :class="square.class" @click="nextSquareValue(square.keyIndex)">
+        {{ square.text }}
+      </div>
+    </el-col>
+  </el-row>
 </template>
 <script setup>
 

@@ -4,39 +4,45 @@ import Home from "../views/Games/GameMenu.vue";
 import TicTacToe from "../views/Games/TicTacToe.vue";
 import Settings from "../views/Settings/Settings.vue"
 import Shapes from "../views/Settings/Shapes.vue"
+import Players from "../views/Settings/Players.vue"
 
 const routes = [
-    {
+  {
+    path: '/',
+    component: Default,
+    children: [
+      {
         path: '/',
-        component: Default,
-        children: [
-            {
-                path: '/',
-                name: 'Games',
-                component: Home
-            },
-            {
-                path: '/tictactoe',
-                name: 'TicTacToe',
-                component: TicTacToe
-            },
-            {
-                path: '/settings',
-                name: 'Settings',
-                component: Settings
-            },
-            {
-                path: '/settings/shapes',
-                name: 'Shapes',
-                component: Shapes
-            }
-        ]
-    }
+        name: 'Games',
+        component: Home
+      },
+      {
+        path: '/tictactoe',
+        name: 'TicTacToe',
+        component: TicTacToe
+      },
+      {
+        path: '/settings',
+        name: 'Settings',
+        component: Settings
+      },
+      {
+        path: '/settings/shapes',
+        name: 'Shapes',
+        component: Shapes
+      },
+      {
+        path: '/settings/players',
+        name: 'Players',
+        component: Players
+      }
+    ]
+  }
 ]
 
 const router = createRouter({
-    history: createWebHistory(),
-    routes
+  history: createWebHistory(),
+  routes
 })
 
 export default router;
