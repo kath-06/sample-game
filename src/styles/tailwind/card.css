@@ -11,6 +11,10 @@
     .menu-line-card {
         @apply w-64 md:w-72 h-28 m-2 p-6 bg-sky-50 rounded-xl flex border-sky-500;
     }
+    /* ICONS */
+    .icon-primary {
+      @apply p-2 rounded-full text-lg text-sky-50 bg-sky-600;
+    }
     .icon-default {
         @apply p-2 rounded-full text-lg text-rose-50 bg-rose-600;
     }
