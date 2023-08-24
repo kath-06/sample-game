@@ -174,7 +174,7 @@ const cancelConfirmBox = () => {
   shapeId.value = undefined;
 };
 const deleteShape = () => {
-  if (shapeId) {
+  if (shapeId.value) {
     loading.value = true;
     tictactoeStore.removeShape(shapeId.value);
     setTimeout(() => {
@@ -196,7 +196,7 @@ const deleteShape = () => {
     }, 2000);
   } else {
     ElMessage({
-      message: "Oops, deleting was failed. Can't find the shape id.",
+      message: "Oops, deleting was failed. Can't find the shape.",
       type: "error",
       duration: 5000,
     });

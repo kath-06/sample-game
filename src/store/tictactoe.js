@@ -44,6 +44,7 @@ export const useTictactoeStore = defineStore('tictactoeStore', {
         shapeName: shape.name,
         shape: shape.character,
         shapeColor: shape.color,
+        isUsed: 0,
         userReference: '',
         dateCreated: this.dateToday.toDateString(),
         dateModified: this.dateToday.toDateString()
@@ -66,7 +67,18 @@ export const useTictactoeStore = defineStore('tictactoeStore', {
         shapeName: shape.name,
         shape: shape.character,
         shapeColor: shape.color,
+        isUsed: shape.isUsed,
         dateModified: this.dateToday.toDateString()
+      }).then(() => {
+        this.editResponse = 'success'
+      }).catch((error) => {
+        console.log(error)
+        this.editResponse = 'error'
+      });
+    },
+    updateUsedShape(shapeId, isUsed) {
+      update(dbRef(tictactoeDB, `tictactoe_shapes/${shapeId}`), {
+        isUsed: isUsed
       }).then(() => {
         this.editResponse = 'success'
       }).catch((error) => {

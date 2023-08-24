@@ -79,6 +79,7 @@ const shape = ref({
   name: "",
   character: "",
   color: "",
+  isUsed: 0,
 });
 const shapeRules = ref({
   name: [
@@ -108,6 +109,7 @@ const setShapeData = (data: any) => {
   shape.value.name = data.shapeName;
   shape.value.character = data.shape;
   shape.value.color = data.shapeColor;
+  shape.value.isUsed = data.isUsed | 0;
 };
 
 onUpdated(() => {

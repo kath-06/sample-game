@@ -73,7 +73,7 @@
   </kath-dialog>
 </template>
 <script setup lang="ts">
-import { onMounted, onUpdated, ref } from "vue";
+import { onMounted, onUpdated, ref, watch } from "vue";
 import { useTictactoeStore } from "../../store/tictactoe";
 
 const props = defineProps({
@@ -120,6 +120,7 @@ const playerRules = ref({
 });
 
 let shapeOptions = ref<any>([]);
+let oldId = ref<number>();
 
 const onCancel = () => {
   emit("onCancel");
@@ -129,6 +130,7 @@ const onSubmit = () => {
     player: player.value,
     isEdit: props.isEdit,
     editData: props.editData,
+    oldShapeId: oldId.value,
   };
   emit("onSubmit", playerFormRef.value, submitParams);
 };
@@ -149,9 +151,16 @@ const searchShapes = (query: string) => {
   }
 };
 
+watch(player.value, () => (oldId.value = props.editData.shapeReference), {
+  immediate: true,
+});
+
 onUpdated(() => {
   if (props.isEdit) {
     setPlayerData(props.editData);
+  } else {
+    player.value.name = "";
+    player.value.shape = "";
   }
   shapeOptions.value = props.shapes;
 });
