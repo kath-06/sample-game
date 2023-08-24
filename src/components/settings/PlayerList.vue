@@ -18,7 +18,7 @@
       :is-edit="action"
       :edit-data="editData"
       :loading="loading"
-      :shapes="shapes"
+      :shapes="shapeOptions"
       @on-cancel="playerDialog = false"
       @on-submit="submitPlayer"
     />
@@ -30,8 +30,11 @@
       @on-reload="loadData"
     >
       <template #shape="scope">
-        <span class="text-xl" :style="`color: ${shapeColor};`">
-          {{ getShapeName(scope.data.shapeReference) }}
+        <span
+          class="text-xl"
+          :style="`color: ${getShapeName(scope.data.shapeReference)};`"
+        >
+          {{ shapeName }}
         </span>
       </template>
       <template #action="scope">
@@ -43,6 +46,15 @@
         />
       </template>
     </main-table>
+    <confirm-message-box
+      :visible="openConfirmBox"
+      type="warning"
+      header-title="Delete Player"
+      message="Are you sure you want to delete this player?"
+      :loading="loading"
+      @on-cancel="cancelConfirmBox"
+      @on-confirm="deletePlayer"
+    />
   </div>
 </template>
 <script lang="ts" setup>
@@ -73,17 +85,27 @@ const tableColumns = ref([
 ]);
 const tableActions = ref([
   { type: "warning", icon: "Edit", name: "Edit", action: "edit" },
+  { type: "danger", icon: "Delete", name: "Delete", action: "delete" },
 ]);
 
 let editData = ref([]);
 let loading = ref<boolean>(false);
 let tableItems = ref<any>([]);
 let shapes = ref<any>([]);
-let shapeColor = ref<string>("");
+let shapeOptions = ref<any>([]);
+let shapeName = ref<string>("");
+let openConfirmBox = ref<boolean>(false);
+let playerId = ref<number>();
+let shapeId = ref<number>();
 
 const formAction = (btnAction: boolean) => {
   playerDialog.value = true;
   action.value = btnAction;
+  if (tableItems.value && !btnAction) {
+    shapeOptions.value = shapes.value.filter(
+      (shape: any) => shape.isUsed !== 1
+    );
+  }
 };
 
 const submitPlayer = async (formEl: FormInstance | undefined, params: any) => {
@@ -104,6 +126,7 @@ const submitPlayer = async (formEl: FormInstance | undefined, params: any) => {
 };
 const addPlayer = (params: any) => {
   playerStore.setPlayers(tableItems.value.length, params.player);
+  tictactoeStore.updateUsedShape(params.player.shape, 1);
   setTimeout(() => {
     if (playerStore.getAddResponse === "success") {
       playerDialog.value = false;
@@ -131,7 +154,12 @@ const actionClick = (data: any, type: string) => {
   if (type === "edit") {
     editData.value = data;
     action.value = true;
+    shapeOptions.value = shapes.value.filter(
+      (shape: any) => shape.isUsed !== 1 || shape.id === data.shapeReference
+    );
     playerDialog.value = true;
+  } else if (type === "delete") {
+    confirmRemove(data);
   }
 };
 const getShapes = () => {
@@ -139,18 +167,21 @@ const getShapes = () => {
   shapes.value = tictactoeStore.getShapes;
 };
 const getShapeName = (shapeId: number) => {
-  let shapeName: string = "";
+  let shapeColor: string = "";
   shapes.value.map((shape: any) => {
     if (shape.id === shapeId) {
-      shapeName = shape.shape;
-      shapeColor.value = shape.shapeColor;
+      shapeName.value = shape.shape;
+      shapeColor = shape.shapeColor;
     }
   });
-
-  return shapeName;
+  return shapeColor;
 };
 const updatePlayer = (params: any) => {
   playerStore.updatePlayer(params.editData.id, params.player);
+  tictactoeStore.updateUsedShape(params.player.shape, 1);
+  if (params.player.shape !== params.oldShapeId) {
+    tictactoeStore.updateUsedShape(params.oldShapeId, 0);
+  }
   setTimeout(() => {
     if (playerStore.getEditResponse === "success") {
       playerDialog.value = false;
@@ -168,6 +199,46 @@ const updatePlayer = (params: any) => {
     }
     loading.value = false;
   }, 2000);
+};
+const confirmRemove = (data: any) => {
+  openConfirmBox.value = true;
+  playerId.value = data.id;
+  shapeId.value = data.shapeReference;
+};
+const cancelConfirmBox = () => {
+  openConfirmBox.value = false;
+  playerId.value = undefined;
+  shapeId.value = undefined;
+};
+const deletePlayer = () => {
+  if (playerId.value) {
+    loading.value = true;
+    playerStore.removePlayer(playerId.value);
+    tictactoeStore.updateUsedShape(shapeId.value, 0);
+    setTimeout(() => {
+      if (playerStore.getRemoveResponse === "success") {
+        ElMessage({
+          message: "Player was deleted successfully.",
+          type: "success",
+          duration: 5000,
+        });
+        cancelConfirmBox();
+      } else {
+        ElMessage({
+          message: "Oops, deleting was failed.",
+          type: "error",
+          duration: 5000,
+        });
+      }
+      loading.value = false;
+    }, 2000);
+  } else {
+    ElMessage({
+      message: "Oops, deleting was failed. Can't find the player.",
+      type: "error",
+      duration: 5000,
+    });
+  }
 };
 
 watchEffect(() => {

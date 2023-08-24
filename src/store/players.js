@@ -11,14 +11,16 @@ export const usePlayerStore = defineStore('playerStore', {
       dateToday: new Date(),
       players: [],
       player: {},
-      editResponse: ''
+      editResponse: '',
+      removeResponse: ''
     }
   },
   getters: {
     getAddResponse: (state) => state.addResponse,
     getPlayers: (state) => state.players,
     getPlayer: (state) => state.player,
-    getEditResponse: (state) => state.editResponse
+    getEditResponse: (state) => state.editResponse,
+    getRemoveResponse: (state) => state.removeResponse
   },
   actions: {
     setPlayers(playerId, player) {
@@ -62,5 +64,14 @@ export const usePlayerStore = defineStore('playerStore', {
         this.editResponse = 'error'
       });
     },
+    removePlayer(playerId) {
+      remove(dbRef(tictactoeDB, 'tictactoe_players/' + playerId))
+        .then(() => {
+          this.removeResponse = 'success'
+        }).catch((error) => {
+          console.log(error)
+          this.removeResponse = 'error'
+        });
+    }
   }
 })
