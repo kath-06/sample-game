@@ -39,6 +39,8 @@ declare module '@vue/runtime-core' {
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     GameCard: typeof import('./components/custom/GameCard.vue')['default']
     GameResult: typeof import('./components/tictactoe/GameResult.vue')['default']
+    GameTypeForm: typeof import('./components/settings/GameTypeForm.vue')['default']
+    GameTypeList: typeof import('./components/settings/GameTypeList.vue')['default']
     HeaderNav: typeof import('./components/layouts/HeaderNav.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     HouseCardWidget: typeof import('./components/widgets/HouseCardWidget.vue')['default']

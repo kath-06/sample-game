@@ -49,6 +49,16 @@ const settingCards = ref([
     },
     link: "/settings/players",
   },
+  {
+    title: "Game Types",
+    subtitle: "Add, edit or delete tictactoe game types",
+    icon: {
+      class: "icon-default",
+      size: 30,
+      name: "SwitchFilled",
+    },
+    link: "/settings/game/types",
+  },
 ]);
 const router = useRouter();
 
