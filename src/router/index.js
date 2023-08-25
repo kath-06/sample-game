@@ -18,7 +18,7 @@ const routes = [
         component: Home
       },
       {
-        path: '/tictactoe',
+        path: '/tictactoe/:id',
         name: 'TicTacToe',
         component: TicTacToe
       },
