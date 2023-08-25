@@ -5,6 +5,7 @@ import TicTacToe from "../views/Games/TicTacToe.vue";
 import Settings from "../views/Settings/Settings.vue"
 import Shapes from "../views/Settings/Shapes.vue"
 import Players from "../views/Settings/Players.vue"
+import GameTypes from "../views/Settings/GameTypes.vue"
 
 const routes = [
   {
@@ -35,6 +36,11 @@ const routes = [
         path: '/settings/players',
         name: 'Players',
         component: Players
+      },
+      {
+        path: '/settings/game/types',
+        name: 'Game Types',
+        component: GameTypes
       }
     ]
   }
