@@ -3,38 +3,48 @@
     <div class="h-24 mt-4 lg:mb-4">
       <span class="title2-white"> TicTacToe </span>
     </div>
-    <div class="flex justify-center content-center">
-      <square-boxes
-        :squares="squares"
-        :rows="gameType.rows"
-        :columns="gameType.columns"
-        @next-square-value="nextSquareValue"
-      />
-    </div>
-    <div>
-      <game-result :next-player="nextPlayer" :nextShape="nextShape" :game-result="result" />
-    </div>
-    <div class="button-container">
-      <div class="mr-0 md:mr-2">
-        <main-button
-          v-if="result"
-          rounded
-          type="success"
-          transition="fade-right-in"
-          @button-click="restartGame"
-        >
-          Restart
-        </main-button>
+    <div class="w-full grid grid-cols-3 gap-8 flex justify-center pt-6">
+      <div class="flex justify-center">
+        <player-card title="Player 1" :player="players[0]" />
       </div>
-      <div class="mt-2 md:mt-0">
-        <main-button
-          rounded
-          type="danger"
-          transition="fade-right-in"
-          @button-click="back"
-        >
-          Back
-        </main-button>
+      <div>
+        <div class="flex justify-center content-center">
+          <square-boxes
+            :squares="squares"
+            :rows="gameType.rows"
+            :columns="gameType.columns"
+            @next-square-value="nextSquareValue"
+          />
+        </div>
+        <div>
+          <game-result :next-player="nextPlayer" :nextShape="nextShape" :game-result="result" />
+        </div>
+        <div class="button-container">
+          <div class="mr-0 md:mr-2">
+            <main-button
+              v-if="result"
+              rounded
+              type="success"
+              transition="fade-right-in"
+              @button-click="restartGame"
+            >
+              Restart
+            </main-button>
+          </div>
+          <div class="mt-2 md:mt-0">
+            <main-button
+              rounded
+              type="danger"
+              transition="fade-right-in"
+              @button-click="back"
+            >
+              Back
+            </main-button>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center">
+        <player-card title="Player 2" :player="players[1]" />
       </div>
     </div>
   </div>
