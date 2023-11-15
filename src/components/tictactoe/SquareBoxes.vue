@@ -5,6 +5,7 @@
         v-for="square in box"
         :key="square.keyIndex"
         :class="square.class"
+        :style="{ 'color': square.color ? square.color : '#ffffff' }"
         @click="nextSquareValue(square.keyIndex)"
       >
         {{ square.text }}
@@ -53,7 +54,9 @@ const setBoxes = () => {
   }
 };
 
-watchEffect(() => setBoxes());
+watchEffect(() => {
+  setBoxes()
+});
 
 onMounted(() => {
   setBoxes();
