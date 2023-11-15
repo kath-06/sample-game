@@ -58,13 +58,12 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ElMessage, ElMessageBox, FormInstance } from "element-plus";
-import { tr } from "element-plus/es/locale";
-import { onMounted, ref, watchEffect } from "vue";
+import { ElMessage, FormInstance } from "element-plus";
+import { onMounted, ref, watchEffect, reactive } from "vue";
 import { useTictactoeStore } from "../../store/tictactoe";
 
 const tictactoeStore = useTictactoeStore();
-const tableColumns = ref([
+const tableColumns = reactive<any>([
   { name: "Shape", prop: "shape", useSlot: "true", slotName: "shape" },
   {
     name: "Color",
@@ -79,11 +78,11 @@ const tableColumns = ref([
     slotName: "action",
   },
 ]);
-const tableActions = ref([
+const tableActions = reactive<any>([
   { type: "warning", icon: "Edit", name: "Edit", action: "edit" },
   { type: "danger", icon: "Delete", name: "Delete", action: "delete" },
 ]);
-const tableItems = ref([]);
+const tableItems = reactive<any>([]);
 const shapeDialog = ref<boolean>(false);
 const action = ref<boolean>(false);
 const openConfirmBox = ref<boolean>(false);
@@ -125,7 +124,7 @@ const submitShape = async (formEl: FormInstance | undefined, params: any) => {
 };
 
 const addShape = (params: any) => {
-  tictactoeStore.setShapes(tableItems.value.length, params.shape);
+  tictactoeStore.setShapes(tableItems.length, params.shape);
   setTimeout(() => {
     if (tictactoeStore.getAddResponse === "success") {
       shapeDialog.value = false;
@@ -205,7 +204,7 @@ const deleteShape = () => {
 
 const reloadData = () => {
   tictactoeStore.getShapeList();
-  tableItems.value = tictactoeStore.getShapes;
+  Object.assign(tableItems, tictactoeStore.getShapes);
 };
 
 watchEffect(() => {

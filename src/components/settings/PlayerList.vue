@@ -59,7 +59,7 @@
 </template>
 <script lang="ts" setup>
 import { ElMessage, FormInstance } from "element-plus";
-import { onMounted, ref, watchEffect } from "vue";
+import { onMounted, ref, watchEffect, reactive } from "vue";
 import { usePlayerStore } from "../../store/players";
 import { useTictactoeStore } from "../../store/tictactoe";
 
@@ -68,7 +68,7 @@ const tictactoeStore = useTictactoeStore();
 
 const playerDialog = ref<boolean>(false);
 const action = ref<boolean>(false);
-const tableColumns = ref([
+const tableColumns = reactive<any>([
   { name: "Player", prop: "playerName" },
   {
     name: "Shape",
@@ -83,16 +83,16 @@ const tableColumns = ref([
     slotName: "action",
   },
 ]);
-const tableActions = ref([
+const tableActions = reactive<any>([
   { type: "warning", icon: "Edit", name: "Edit", action: "edit" },
   { type: "danger", icon: "Delete", name: "Delete", action: "delete" },
 ]);
 
-let editData = ref([]);
+let editData = reactive<any>([]);
 let loading = ref<boolean>(false);
-let tableItems = ref<any>([]);
-let shapes = ref<any>([]);
-let shapeOptions = ref<any>([]);
+let tableItems = reactive<any>([]);
+let shapes = reactive<any>([]);
+let shapeOptions = reactive<any>([]);
 let shapeName = ref<string>("");
 let openConfirmBox = ref<boolean>(false);
 let playerId = ref<number>();
@@ -101,8 +101,8 @@ let shapeId = ref<number>();
 const formAction = (btnAction: boolean) => {
   playerDialog.value = true;
   action.value = btnAction;
-  if (tableItems.value && !btnAction) {
-    shapeOptions.value = shapes.value.filter(
+  if (tableItems && !btnAction) {
+    shapeOptions = shapes.filter(
       (shape: any) => shape.isUsed !== 1
     );
   }
@@ -125,7 +125,7 @@ const submitPlayer = async (formEl: FormInstance | undefined, params: any) => {
   });
 };
 const addPlayer = (params: any) => {
-  playerStore.setPlayers(tableItems.value.length, params.player);
+  playerStore.setPlayers(tableItems.length, params.player);
   tictactoeStore.updateUsedShape(params.player.shape, 1);
   setTimeout(() => {
     if (playerStore.getAddResponse === "success") {
@@ -147,14 +147,14 @@ const addPlayer = (params: any) => {
 };
 const loadData = () => {
   playerStore.getPlayerList();
-  tableItems.value = playerStore.getPlayers;
+  Object.assign(tableItems, playerStore.getPlayers);
   getShapes();
 };
 const actionClick = (data: any, type: string) => {
   if (type === "edit") {
-    editData.value = data;
+    editData = data;
     action.value = true;
-    shapeOptions.value = shapes.value.filter(
+    shapeOptions = shapes.filter(
       (shape: any) => shape.isUsed !== 1 || shape.id === data.shapeReference
     );
     playerDialog.value = true;
@@ -164,11 +164,11 @@ const actionClick = (data: any, type: string) => {
 };
 const getShapes = () => {
   tictactoeStore.getShapeList();
-  shapes.value = tictactoeStore.getShapes;
+  Object.assign(shapes, tictactoeStore.getShapes);
 };
 const getShapeName = (shapeId: number) => {
   let shapeColor: string = "";
-  shapes.value.map((shape: any) => {
+  shapes.map((shape: any) => {
     if (shape.id === shapeId) {
       shapeName.value = shape.shape;
       shapeColor = shape.shapeColor;

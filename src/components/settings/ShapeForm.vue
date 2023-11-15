@@ -53,7 +53,7 @@
   </kath-dialog>
 </template>
 <script setup lang="ts">
-import { onMounted, onUpdated, ref } from "vue";
+import { reactive, onUpdated, ref } from "vue";
 
 const props = defineProps({
   visible: {
@@ -75,13 +75,13 @@ const props = defineProps({
 });
 const emit = defineEmits(["onCancel", "onSubmit"]);
 const shapeFormRef = ref();
-const shape = ref({
+const shape = reactive<any>({
   name: "",
   character: "",
   color: "",
   isUsed: 0,
 });
-const shapeRules = ref({
+const shapeRules = reactive<any>({
   name: [
     { required: true, message: "Shape name is required", trigger: "blur" },
   ],
@@ -98,7 +98,7 @@ const onCancel = () => {
 };
 const onSubmit = () => {
   const submitParams = {
-    shape: shape.value,
+    shape: shape,
     isEdit: props.isEdit,
     editData: props.editData,
   };
@@ -106,10 +106,10 @@ const onSubmit = () => {
 };
 
 const setShapeData = (data: any) => {
-  shape.value.name = data.shapeName;
-  shape.value.character = data.shape;
-  shape.value.color = data.shapeColor;
-  shape.value.isUsed = data.isUsed | 0;
+  shape.name = data.shapeName;
+  shape.character = data.shape;
+  shape.color = data.shapeColor;
+  shape.isUsed = data.isUsed | 0;
 };
 
 onUpdated(() => {

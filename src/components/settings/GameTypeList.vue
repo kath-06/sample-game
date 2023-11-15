@@ -50,14 +50,14 @@
 </template>
 <script lang="ts" setup>
 import { ElMessage, FormInstance } from "element-plus";
-import { onMounted, ref, watchEffect } from "vue";
+import { onMounted, ref, watchEffect, reactive } from "vue";
 import { useGameTypeStore } from "../../store/gameType";
 
 const gameTypeStore = useGameTypeStore();
 
 const gameTypeDialog = ref<boolean>(false);
 const action = ref<boolean>(false);
-const tableColumns = ref([
+const tableColumns = reactive<any>([
   { name: "Type No.", prop: "type" },
   { name: "Type", prop: "typeName" },
   {
@@ -75,14 +75,14 @@ const tableColumns = ref([
     slotName: "action",
   },
 ]);
-const tableActions = ref([
+const tableActions = reactive<any>([
   { type: "warning", icon: "Edit", name: "Edit", action: "edit" },
   { type: "danger", icon: "Delete", name: "Delete", action: "delete" },
 ]);
 
-let editData = ref([]);
+let editData = reactive<any>([]);
 let loading = ref<boolean>(false);
-let tableItems = ref<any>([]);
+let tableItems = reactive<any>([]);
 let openConfirmBox = ref<boolean>(false);
 let gameTypeId = ref<number>();
 
@@ -111,7 +111,7 @@ const submitGameType = async (
   });
 };
 const addGameType = (params: any) => {
-  gameTypeStore.setGameTypes(tableItems.value.length, params.gameType);
+  gameTypeStore.setGameTypes(tableItems.length, params.gameType);
   setTimeout(() => {
     if (gameTypeStore.getAddResponse === "success") {
       gameTypeDialog.value = false;
@@ -132,11 +132,11 @@ const addGameType = (params: any) => {
 };
 const loadData = () => {
   gameTypeStore.getGameTypeList();
-  tableItems.value = gameTypeStore.getGameTypes;
+  Object.assign(tableItems, gameTypeStore.getGameTypes);
 };
 const actionClick = (data: any, type: string) => {
   if (type === "edit") {
-    editData.value = data;
+    Object.assign(editData, data);
     action.value = true;
     gameTypeDialog.value = true;
   } else if (type === "delete") {

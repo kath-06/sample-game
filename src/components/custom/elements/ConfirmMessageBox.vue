@@ -53,7 +53,7 @@
 import { ref } from "vue";
 import { messageBoxTypes } from "../../../composables/element";
 
-const props = defineProps({
+defineProps({
   visible: {
     type: Boolean,
     default: false,
