@@ -3,25 +3,29 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode serve-dev --host",
     "build": "vite build",
     "generate": "vite-ssg build",
     "preview": "vite preview",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "test": "jest"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
     "element-plus": "^2.3.5",
+    "firebase": "^10.1.0",
     "pinia": "^2.1.6",
     "tailwindcss-animated": "^1.0.1",
     "vue": "^3.3.4",
-    "vue-router": "^4.0.13"
+    "vue-router": "^4.0.13",
+    "vuefire": "^3.1.12"
   },
   "devDependencies": {
     "@iconify-json/ep": "^1.1.10",
     "@types/node": "^20.2.1",
     "@vitejs/plugin-vue": "^4.2.3",
     "autoprefixer": "^10.4.14",
+    "jest": "^29.6.4",
     "postcss": "^8.4.27",
     "sass": "^1.62.1",
     "tailwindcss": "^3.3.3",

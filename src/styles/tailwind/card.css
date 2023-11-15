@@ -5,4 +5,17 @@
     .primary-line-card {
         @apply w-64 md:w-72 h-60 md:h-64 m-2 bg-sky-50 rounded-xl flex justify-center items-center border-sky-500 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110
     }
+    .page-line-card {
+        @apply w-full p-6 relative overflow-x-auto shadow-md sm:rounded-lg bg-white; 
+    }
+    .menu-line-card {
+        @apply w-64 md:w-72 h-28 m-2 p-6 bg-sky-50 rounded-xl flex border-sky-500;
+    }
+    /* ICONS */
+    .icon-primary {
+      @apply p-2 rounded-full text-lg text-sky-50 bg-sky-600;
+    }
+    .icon-default {
+        @apply p-2 rounded-full text-lg text-rose-50 bg-rose-600;
+    }
 }

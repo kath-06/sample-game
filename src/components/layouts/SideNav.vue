@@ -31,42 +31,42 @@
 </template>
 
 <script lang="ts" setup>
-    import { ref } from 'vue';
-    import { smallScreen } from "../../utils/responsive.js"
+  import { ref } from 'vue';
+  import { smallScreen } from "../../utils/responsive.js"
 
-    let isCollapse = ref<Boolean>(false);
+  let isCollapse = ref<boolean>(false);
 
-    defineProps({
-        sidebarMenu: {
-            type: Object,
-            required: false,
-            default: null
-        }
-    })
+  defineProps({
+    sidebarMenu: {
+      type: Object,
+      required: false,
+      default: null
+    }
+  })
 
-    window.addEventListener("resize", function () {
-        if(smallScreen(1200)) {
-            isCollapse.value = true;
-        } else {
-            isCollapse.value = false;
-        }
-    })
+  window.addEventListener("resize", function () {
+    if(smallScreen(1200)) {
+      isCollapse.value = true;
+    } else {
+      isCollapse.value = false;
+    }
+  })
 </script>
 
 <style scoped>
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 #side-nav {
-    height: 100%;
+  height: 100%;
 }
 #side-nav:not(.el-menu-collapse) {
-    width: 200px !important;
+  width: 200px !important;
 }
 
 @media (max-width: 1200px) {
-    #side-nav {
-        width: 70px !important;
-    }
+  #side-nav {
+     width: 70px !important;
+  }
 }
 </style>
