@@ -55,6 +55,7 @@ declare module '@vue/runtime-core' {
     MainTable: typeof import('./components/custom/MainTable.vue')['default']
     MainTableActions: typeof import('./components/custom/MainTableActions.vue')['default']
     PasswordField: typeof import('./components/inputs/PasswordField.vue')['default']
+    PlayerCard: typeof import('./components/tictactoe/PlayerCard.vue')['default']
     PlayerForm: typeof import('./components/settings/PlayerForm.vue')['default']
     PlayerList: typeof import('./components/settings/PlayerList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
