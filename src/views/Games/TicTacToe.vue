@@ -150,12 +150,16 @@ const checkWinner = () => {
       squareKeys.push(setColumns);
     }
   }
-
+  let shapeColor = '#000000'
+  if (players) {
+    shapeColor = players.filter((item: any) => item.playerName === currentPlayer.value)[0].shapeColor
+  }
   squareKeys.map((keys) => {
     if (allValueAreSame(keys)) {
       keys.map((key) => {
         winner.value = squares[key].text;
-        squares[key].class = "primary-square rotate-y-in";
+        squares[key].class = 'primary-square rotate-y-in';
+        squares[key].color = shapeColor;
       });
     }
   });
@@ -216,7 +220,7 @@ const getLocalStorage = () => {
       players.push({...item, shape: setShapes.shape, shapeColor: setShapes.shapeColor, shapeName: setShapes.shapeName})
     }
   })
-  if(players) {
+  if(players.length > 0) {
     currentShape.value = players[0].shape;
     currentPlayer.value = players[0].playerName
     nextShape.value = players[0].shape;
