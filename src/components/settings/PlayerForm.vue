@@ -73,8 +73,7 @@
   </kath-dialog>
 </template>
 <script setup lang="ts">
-import { onMounted, onUpdated, ref, watch } from "vue";
-import { useTictactoeStore } from "../../store/tictactoe";
+import { onUpdated, ref, watch, reactive, toRefs } from "vue";
 
 const props = defineProps({
   visible: {
@@ -99,14 +98,13 @@ const props = defineProps({
   },
 });
 const emit = defineEmits(["onCancel", "onSubmit"]);
-const tictactoeStore = useTictactoeStore();
 
 const playerFormRef = ref();
-const player = ref({
+const player = reactive<any>({
   name: "",
   shape: "",
 });
-const playerRules = ref({
+const playerRules = reactive<any>({
   name: [
     { required: true, message: "Shape name is required", trigger: "blur" },
   ],
@@ -119,7 +117,7 @@ const playerRules = ref({
   ],
 });
 
-let shapeOptions = ref<any>([]);
+let shapeOptions = reactive<any>([]);
 let oldId = ref<number>();
 
 const onCancel = () => {
@@ -127,7 +125,7 @@ const onCancel = () => {
 };
 const onSubmit = () => {
   const submitParams = {
-    player: player.value,
+    player: player,
     isEdit: props.isEdit,
     editData: props.editData,
     oldShapeId: oldId.value,
@@ -136,22 +134,23 @@ const onSubmit = () => {
 };
 
 const setPlayerData = (data: any) => {
-  player.value.name = data.playerName;
-  player.value.shape = data.shapeReference;
+  player.name = data.playerName;
+  player.shape = data.shapeReference;
 };
 const searchShapes = (query: string) => {
+  shapeOptions = props.shapes
   if (query) {
-    shapeOptions.value = props.shapes.filter((item: any) => {
+    shapeOptions = props.shapes.filter((item: any) => {
       return item.shapeName.toLowerCase().includes(query.toLowerCase());
     });
-  } else if (!player.value.shape) {
-    shapeOptions.value = props.shapes;
+  } else if (!player.shape) {
+    shapeOptions = props.shapes
   } else {
-    shapeOptions.value = [];
+    shapeOptions = []
   }
 };
 
-watch(player.value, () => (oldId.value = props.editData.shapeReference), {
+watch(player, () => (oldId.value = props.editData.shapeReference), {
   immediate: true,
 });
 
@@ -159,9 +158,9 @@ onUpdated(() => {
   if (props.isEdit) {
     setPlayerData(props.editData);
   } else {
-    player.value.name = "";
-    player.value.shape = "";
+    player.name = "";
+    player.shape = "";
   }
-  shapeOptions.value = props.shapes;
+  Object.assign(shapeOptions, props.shapes);
 });
 </script>

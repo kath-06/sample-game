@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    class="w-11/12 lg:w-6/12 rounded-md"
+    class="w-11/12 lg:w-4/12 rounded-md"
     :model-value="visible"
     align-center
     :close-on-click-modal="false"
@@ -18,8 +18,7 @@
   </el-dialog>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
-const props = defineProps({
+defineProps({
   visible: {
     type: Boolean,
     default: false,

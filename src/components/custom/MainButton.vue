@@ -18,7 +18,6 @@
   />
 </template>
 <script lang="ts" setup>
-import { fa } from "element-plus/es/locale";
 import { buttonTypes } from "~/composables";
 
 defineProps({

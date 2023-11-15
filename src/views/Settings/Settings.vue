@@ -5,9 +5,7 @@
         {{ getRouteName() }}
       </span>
     </div>
-    <div
-      class="container-flex-col h-fit md:container-flex-row md:p-12 fade-down-in animate-delay-600"
-    >
+    <div class="page-container-1 fade-down-in animate-delay-600">
       <span
         class="w-80 flex justify-center"
         v-for="(card, index) in settingCards"
@@ -24,11 +22,11 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from "vue";
+import { reactive } from "vue";
 import { getRouteName } from "../../utils/routes";
 import { useRouter } from "vue-router";
 
-const settingCards = ref([
+const settingCards = reactive<any>([
   {
     title: "Shapes",
     subtitle: "Add, edit or delete tictactoe shapes",

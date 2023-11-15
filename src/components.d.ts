@@ -38,6 +38,7 @@ declare module '@vue/runtime-core' {
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     GameCard: typeof import('./components/custom/GameCard.vue')['default']
+    GamePlayerForm: typeof import('./components/tictactoe/GamePlayerForm.vue')['default']
     GameResult: typeof import('./components/tictactoe/GameResult.vue')['default']
     GameTypeForm: typeof import('./components/settings/GameTypeForm.vue')['default']
     GameTypeList: typeof import('./components/settings/GameTypeList.vue')['default']

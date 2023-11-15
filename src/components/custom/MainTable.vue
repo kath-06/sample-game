@@ -64,7 +64,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { onMounted, onUpdated, ref, watchEffect } from "vue";
+import { ref, watchEffect, reactive } from "vue";
 import { tableTypes } from "../../composables/element";
 
 const props = defineProps({
@@ -89,7 +89,7 @@ const emit = defineEmits(["onReload"]);
 
 const firstItem = ref<number>(1);
 const lastItem = ref<number>(3);
-const tableData = ref<any>([]);
+let tableData = reactive<any>([]);
 const currentPage = ref<number>(1);
 
 let headerClass = ref<string>("");
@@ -100,12 +100,12 @@ let paginationClass = ref<string>("");
 const handleCurrentChange = (val: number) => {
   lastItem.value = val * props.pageSize;
   firstItem.value = lastItem.value - props.pageSize;
-  tableData.value = [];
+  tableData.length = 0
   currentPage.value = val;
 
   props.items.map((item, index) => {
     if (index >= firstItem.value && index < lastItem.value) {
-      tableData.value.push(item);
+      tableData.push(item);
     }
   });
 };

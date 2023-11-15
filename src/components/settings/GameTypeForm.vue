@@ -66,8 +66,7 @@
   </kath-dialog>
 </template>
 <script setup lang="ts">
-import { onMounted, onUpdated, ref, watch } from "vue";
-import { useTictactoeStore } from "../../store/tictactoe";
+import { onUpdated, ref, reactive } from "vue";
 
 const props = defineProps({
   visible: {
@@ -90,14 +89,14 @@ const props = defineProps({
 const emit = defineEmits(["onCancel", "onSubmit"]);
 
 const gameTypeFormRef = ref();
-const gameType = ref({
+const gameType = reactive<any>({
   name: "",
   type: "",
   rows: "",
   columns: "",
   fillCount: "",
 });
-const gameTypeRules = ref({
+const gameTypeRules = reactive<any>({
   name: [
     { required: true, message: "Game type name is required", trigger: "blur" },
   ],
@@ -126,7 +125,7 @@ const onCancel = () => {
 };
 const onSubmit = () => {
   const submitParams = {
-    gameType: gameType.value,
+    gameType: gameType,
     isEdit: props.isEdit,
     editData: props.editData,
   };
@@ -134,22 +133,22 @@ const onSubmit = () => {
 };
 
 const setPlayerData = (data: any) => {
-  gameType.value.name = data.typeName;
-  gameType.value.type = data.type;
-  gameType.value.rows = data.rows;
-  gameType.value.columns = data.columns;
-  gameType.value.fillCount = data.fillCount;
+  gameType.name = data.typeName;
+  gameType.type = data.type;
+  gameType.rows = data.rows;
+  gameType.columns = data.columns;
+  gameType.fillCount = data.fillCount;
 };
 
 onUpdated(() => {
   if (props.isEdit) {
     setPlayerData(props.editData);
   } else {
-    gameType.value.name = "";
-    gameType.value.type = "";
-    gameType.value.rows = "";
-    gameType.value.columns = "";
-    gameType.value.fillCount = "";
+    gameType.name = "";
+    gameType.type = "";
+    gameType.rows = "";
+    gameType.columns = "";
+    gameType.fillCount = "";
   }
 });
 </script>
