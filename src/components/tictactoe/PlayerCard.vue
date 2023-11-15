@@ -4,7 +4,8 @@
       {{ title }}
     </div>
     <div
-      class="text-xl"
+      v-if="player"
+      class="text-xl p-2"
       :style="{ 'color': player.shapeColor ? player.shapeColor : '#000000' }"
     >
       {{ player.playerName }} {{ player.shape }}

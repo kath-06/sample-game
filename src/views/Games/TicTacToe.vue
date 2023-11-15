@@ -3,7 +3,7 @@
     <div class="h-24 mt-4 lg:mb-4">
       <span class="title2-white"> TicTacToe </span>
     </div>
-    <div class="w-full grid grid-cols-3 gap-8 flex justify-center pt-6">
+    <div class="w-full grid grid-cols-1 lg:grid-cols-3 gap-8 flex justify-center pt-6">
       <div class="flex justify-center">
         <player-card title="Player 1" :player="players[0]" />
       </div>

@@ -8,19 +8,22 @@
         :disabled="loading"
       >
         <el-row :gutter="10">
-          <el-col :span="24" :lg="12">
+          <el-col :span="24">
             <el-form-item label="Shape Name" prop="name">
               <el-input v-model="shape.name" />
             </el-form-item>
           </el-col>
-          <el-col :span="24" :lg="12">
+          <el-col :span="24">
             <el-form-item label="Shape Character" prop="character">
               <el-input v-model="shape.character" />
             </el-form-item>
           </el-col>
-          <el-col :span="24" :lg="12">
+          <el-col :span="24">
             <el-form-item label="Shape Color" prop="color">
-              <el-color-picker v-model="shape.color" />
+              <el-color-picker
+                v-model="shape.color"
+                :predefine="predefinedColors"
+              />
             </el-form-item>
           </el-col>
         </el-row>
@@ -54,6 +57,7 @@
 </template>
 <script setup lang="ts">
 import { reactive, onUpdated, ref } from "vue";
+import { predefinedColors } from '../../composables/colors'
 
 const props = defineProps({
   visible: {
