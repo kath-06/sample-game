@@ -4,9 +4,6 @@
       <span v-show="nextPlayer || nextShape">
         Next Player: {{nextPlayer}} ({{ nextShape }})
       </span>
-      <span v-show="gameResult">
-        Game Result: {{gameResult}}
-      </span>
     </el-col>
   </el-row>
 </template>
@@ -18,10 +15,6 @@ defineProps({
     default: ''
   },
   nextShape: {
-    type: String,
-    default: ''
-  },
-  gameResult: {
     type: String,
     default: ''
   }

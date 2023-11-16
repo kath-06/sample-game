@@ -1,11 +1,15 @@
 <template>
-  <div class="container-flex-col">
+  <div class="container-flex-col h-full">
     <div class="h-24 mt-4 lg:mb-4">
       <span class="title2-white"> TicTacToe </span>
     </div>
     <div class="w-full grid grid-cols-1 lg:grid-cols-3 gap-8 flex justify-center pt-6">
-      <div class="flex justify-center">
-        <player-card title="Player 1" :player="players[0]" />
+      <div class="hidden lg:flex justify-center">
+        <player-card
+          title="Player 1"
+          :player="players[0]"
+          :is-winner="players[0].playerName === winnerPlayer ? true : false"
+        />
       </div>
       <div>
         <div class="flex justify-center content-center">
@@ -16,7 +20,7 @@
             @next-square-value="nextSquareValue"
           />
         </div>
-        <div>
+        <div class="fade-down-in">
           <game-result :next-player="nextPlayer" :nextShape="nextShape" :game-result="result" />
         </div>
         <div class="button-container">
@@ -43,10 +47,15 @@
           </div>
         </div>
       </div>
-      <div class="flex justify-center">
-        <player-card title="Player 2" :player="players[1]" />
+      <div class="hidden lg:flex justify-center">
+        <player-card
+          title="Player 2"
+          :player="players[1]"
+          :is-winner="players[1].playerName === winnerPlayer ? true : false"
+        />
       </div>
     </div>
+    <game-winner :show-winner="result ? true : false" :game-result="result" />
   </div>
 </template>
 
@@ -64,7 +73,7 @@ const routerId = ref<any>(router.currentRoute.value.params.id);
 let currentValue = ref<any>(0);
 let xIsNext = ref<boolean>(false);
 let winner = ref<string>("");
-let winnerKeys = reactive<any>([]);
+let winnerPlayer = ref<string>("");
 let result = ref<string>("");
 let currentShape = ref<string>("X");
 let currentPlayer = ref<string>("");
@@ -89,6 +98,7 @@ const restartGame = () => {
   result.value = "";
   currentShape.value = players[0].shape;
   currentPlayer.value = players[0].playerName
+  winnerPlayer.value = "";
   nextShape.value = players[0].shape;
   nextPlayer.value = players[0].playerName;
   isEmpty.value = true;
@@ -110,11 +120,13 @@ const nextSquareValue = (index: any) => {
   if (!winner.value && !isEmpty.value) {
     result.value = "Draw";
     currentShape.value = "";
+    winnerPlayer.value = "";
     currentPlayer.value = "";
     nextShape.value = "";
     nextPlayer.value = "";
   } else if (winner.value) {
     result.value = `${currentPlayer.value} (${winner.value}) wins`;
+    winnerPlayer.value = currentPlayer.value;
     currentShape.value = "";
     currentPlayer.value = "";
     nextShape.value = "";
@@ -235,6 +247,7 @@ const getLocalStorage = () => {
     currentPlayer.value = players[0].playerName
     nextShape.value = players[0].shape;
     nextPlayer.value = players[0].playerName
+    winnerPlayer.value = "";
   }
 }
 
