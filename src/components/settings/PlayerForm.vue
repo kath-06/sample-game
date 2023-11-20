@@ -11,12 +11,12 @@
         :disabled="loading"
       >
         <el-row :gutter="10">
-          <el-col :span="24" :lg="12">
+          <el-col :span="24">
             <el-form-item label="Player Name" prop="name">
               <el-input v-model="player.name" />
             </el-form-item>
           </el-col>
-          <el-col :span="24" :lg="12">
+          <el-col :span="24">
             <el-form-item label="Shape" prop="shape">
               <el-select
                 v-model="player.shape"
