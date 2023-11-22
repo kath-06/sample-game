@@ -29,14 +29,6 @@
       table-type="primary"
       @on-reload="loadData"
     >
-      <template #shape="scope">
-        <span
-          class="text-xl"
-          :style="`color: ${getShapeName(scope.data.shapeReference)};`"
-        >
-          {{ shapeName }}
-        </span>
-      </template>
       <template #action="scope">
         <main-table-actions
           :actions="tableActions"
@@ -59,7 +51,7 @@
 </template>
 <script lang="ts" setup>
 import { ElMessage, FormInstance } from "element-plus";
-import { onMounted, ref, watchEffect, reactive } from "vue";
+import { onMounted, ref, watchEffect, reactive, watch, toRefs } from "vue";
 import { usePlayerStore } from "../../store/players";
 import { useTictactoeStore } from "../../store/tictactoe";
 
@@ -70,12 +62,6 @@ const playerDialog = ref<boolean>(false);
 const action = ref<boolean>(false);
 const tableColumns = reactive<any>([
   { name: "Player", prop: "playerName" },
-  {
-    name: "Shape",
-    prop: "shapeReference",
-    useSlot: "true",
-    slotName: "shape",
-  },
   {
     name: "Actions",
     prop: "action",
